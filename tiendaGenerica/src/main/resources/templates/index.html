@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Tienda generica</title>
+<!-- <link rel="stylesheet" type="text/css" href="static/css/index.css"> -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script src="js/session.js"></script>
+<script src="js/main.js" type="module"></script>
+
+</head>
+<body>
+	<nav>
+		<a href="#">Usuarios</a>
+		<a href="#">Clientes</a>
+		<a href="#">Proveedores</a>
+		<a href="#">Ventas</a>
+		<a href="#">Reportes</a>
+	</nav>
+	
+	<div id="body-vista">
+
+<!-- vista autentificacion-->
+
+		<div>
+			<h3>Auth</h3>
+			<form id="form-auth" >
+				<fieldset>
+					<legend>Autentificarse</legend>
+					
+					<label for="usuario">Usuario</label>
+					<input type="text" name="usuario" id="auth-usuario" required autocomplete="off">
+					<span id="error-auth-usuario"></span>
+					
+					<label for="password">Contraseña</label>
+					<input type="text" name="password" id="auth-password" required autocomplete="off">
+					<span id="error-auth-password"></span>
+				
+					<span style="display: block;" id="info-auth"></span>
+
+					<button value="GET:login" type="button">Ingresar</button>
+				</fieldset>
+			</form>
+		</div>
+
+		<br>
+
+<!-- vista usuario-->
+
+		<div>
+			<h3>Usuario</h3>
+			<form id="form-usuario" >
+				<fieldset>
+					<legend>Consultar Usuario</legend>
+				
+					<label for="cedula">Cedula</label>
+					<input type="text" name="cedula" id="usuario-cedula" required autocomplete="off">
+					<span id="error-usuario-cedula"></span>
+					
+					<label for="nombre">Nombre</label>
+					<input type="text" name="nombre" id="usuario-nombre" required autocomplete="off">
+					<span id="error-usuario-nombre"></span>
+									
+					<label for="email">Email</label>
+					<input type="text" name="email" id="usuario-email" required autocomplete="off">
+					<span id="error-usuario-email"></span>
+
+					<label for="usuario">Usuario</label>
+					<input type="text" name="usuario" id="usuario-usuario" required autocomplete="off">
+					<span id="error-usuario-usuario"></span>
+					
+					<label for="password">Contraseña</label>
+					<input type="text" name="password" id="usuario-password" required autocomplete="off">
+					<span id="error-usuario-password"></span>
+
+					<label for="confirmPassword">Confirmar Contraseña</label>
+					<input type="text" name="confirmPassword" id="usuario-confirmPassword" required autocomplete="off">
+					<span id="error-usuario-confirmPassword"></span>					
+
+					<span style="display: block;" id="info-usuario"></span>
+
+					<button value="GET:leerPorId" type="button">Consultar</button>
+					<button value="POST:guardar" type="button">Crear</button>
+					<button value="PUT:actualizar" type="button">Actualizar</button>		
+					<button value="DELETE:eliminar" type="button">Borrar</button>			
+				</fieldset>
+			</form>
+		</div>
+
+
+	</div>
+</body>
+</html>
