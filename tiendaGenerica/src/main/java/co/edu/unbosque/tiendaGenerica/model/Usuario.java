@@ -31,10 +31,6 @@ public class Usuario implements Serializable{
 	@Column(name="password", length = 255, nullable = false)
 	private String password;	
 
-	//este campo es Virtual (no se almacena en BD)
-	@Transient
-	private String confirmPassword;
-
 	//relacion bidireccional para la relacion usuario-venta
 //	@JsonManagedReference //evita bucle de JSON infinito
 //	@JsonIgnore
@@ -79,14 +75,6 @@ public class Usuario implements Serializable{
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
 	}
 
 //	@JsonManagedReference //evita bucle de JSON infinito
