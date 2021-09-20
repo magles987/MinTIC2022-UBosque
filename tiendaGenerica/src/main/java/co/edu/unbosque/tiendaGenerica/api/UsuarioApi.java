@@ -130,14 +130,7 @@ public class UsuarioApi extends Api<Usuario, Long>{
 			if (entity.getPassword().equals("") || entity.getPassword() == null) {
 				valMap.put("password", "no puede estar vacio");	
 			}				
-			
-			if (entity.getConfirmPassword().equals("")|| entity.getConfirmPassword() == null) {
-				valMap.put("configPassword", "no puede estar vacio");	
-			}		
-
-			if (entity.getConfirmPassword().equals(entity.getPassword()) == false) {
-				valMap.put("password", "password debe ser igual al configPassword");	
-			}			
+					
 			
 			//validacion dedicada a Creacion			
 			if (etiModTipo.equals(this.etiCreacion) ) {

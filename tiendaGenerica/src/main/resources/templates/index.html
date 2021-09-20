@@ -75,10 +75,6 @@
 					<input type="text" name="password" id="usuario-password" required autocomplete="off">
 					<span id="error-usuario-password"></span>
 
-					<label for="confirmPassword">Confirmar Contraseña</label>
-					<input type="text" name="confirmPassword" id="usuario-confirmPassword" required autocomplete="off">
-					<span id="error-usuario-confirmPassword"></span>					
-
 					<span style="display: block;" id="info-usuario"></span>
 
 					<button value="GET:leerPorId" type="button">Consultar</button>
@@ -88,6 +84,82 @@
 				</fieldset>
 			</form>
 		</div>
+
+<!-- vista Cliente-->
+
+		<div>
+			<h3>Cliente</h3>
+			<form id="form-cliente" >
+				<fieldset>
+					<legend>Consultar Cliente</legend>
+				
+					<label for="cedula">Cedula</label>
+					<input type="text" name="cedula" id="cliente-cedula" required autocomplete="off">
+					<span id="error-cliente-cedula"></span>
+					
+					<label for="nombre">Nombre</label>
+					<input type="text" name="nombre" id="cliente-nombre" required autocomplete="off">
+					<span id="error-cliente-nombre"></span>
+									
+					<label for="email">Email</label>
+					<input type="text" name="email" id="cliente-email" required autocomplete="off">
+					<span id="error-cliente-email"></span>
+
+					<label for="direccion">Direccion</label>
+					<input type="text" name="direccion" id="cliente-direccion" required autocomplete="off">
+					<span id="error-cliente-direccion"></span>
+					
+					<label for="telefono">Telefono</label>
+					<input type="text" name="telefono" id="cliente-telefono" required autocomplete="off">
+					<span id="error-cliente-telefono"></span>
+
+					<span style="display: block;" id="info-cliente"></span>
+
+					<button value="GET:leerPorId" type="button">Consultar</button>
+					<button value="POST:guardar" type="button">Crear</button>
+					<button value="PUT:actualizar" type="button">Actualizar</button>		
+					<button value="DELETE:eliminar" type="button">Borrar</button>			
+				</fieldset>
+			</form>
+		</div>
+
+<!-- vista Proveedor-->
+
+<div>
+	<h3>Proveedor</h3>
+	<form id="form-proveedor" >
+		<fieldset>
+			<legend>Consultar Proveedor</legend>
+		
+			<label for="nit">NIT</label>
+			<input type="text" name="nit" id="proveedor-nit" required autocomplete="off">
+			<span id="error-proveedor-nit"></span>
+			
+			<label for="nombre">Nombre</label>
+			<input type="text" name="nombre" id="proveedor-nombre" required autocomplete="off">
+			<span id="error-proveedor-nombre"></span>
+
+			<label for="direccion">Direccion</label>
+			<input type="text" name="direccion" id="proveedor-direccion" required autocomplete="off">
+			<span id="error-proveedor-direccion"></span>
+			
+			<label for="telefono">Telefono</label>
+			<input type="text" name="telefono" id="proveedor-telefono" required autocomplete="off">
+			<span id="error-proveedor-telefono"></span>
+
+			<label for="ciudad">Ciudad</label>
+			<input type="text" name="ciudad" id="proveedor-ciudad" required autocomplete="off">
+			<span id="error-proveedor-ciudad"></span>			
+
+			<span style="display: block;" id="info-proveedor"></span>
+
+			<button value="GET:leerPorId" type="button">Consultar</button>
+			<button value="POST:guardar" type="button">Crear</button>
+			<button value="PUT:actualizar" type="button">Actualizar</button>		
+			<button value="DELETE:eliminar" type="button">Borrar</button>			
+		</fieldset>
+	</form>
+</div>
 
 
 	</div>
