@@ -133,7 +133,15 @@ $(document).ready(function(){
 
 					break;
 			
-				case "lectura":					
+				case "lectura":		
+				
+					//determinar si la consulta por cedula es vacia
+					if (metadatos.usuarios.length == 0) {
+						metadatos.errorValidacion = getUsuarioModelo();
+						metadatos.errorValidacion.cedula = "no existe";
+						return Promise.reject(metadatos);
+					}				
+							
 					accederCampos(metadatos.usuarios[0]);
 					break;
 

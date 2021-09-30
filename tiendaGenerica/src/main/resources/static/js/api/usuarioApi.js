@@ -10,13 +10,15 @@ var urlBase = `/${nomModel_s}/`;
  * @return un modelo modelo vacio para usarlo como instancia 
  * o para tipar
 */
-function getModelo(){
+export function getModelo(){
 	return {
 		cedula :"",
 		nombre :"",
 		email:"",
 		usuario : "",
 		password : "",
+		
+		ventas:[]//referencia virtual
 	};
 }
 
@@ -24,7 +26,7 @@ function getModelo(){
  * @return un modelo de metadatos vacio para usarlo como instancia 
  * o para tipar
 */
-function getMetadatos() {
+export function getMetadatos() {
 	return {
 		tipoConsulta:"",
 		usuarios : [getModelo()],		
@@ -38,54 +40,53 @@ function getMetadatos() {
 //validaciones locales por cada campo
 
 function valCedula(val) {
-	let msn;
 
-	if (isNaN(val) || val <= 0) {
-		msn = "no puede estar vacio";
+	if (!val || val == "") {
+		return "no puede estar vacio";
 	}
-	return msn;
+
+	if (isNaN(parseInt(val)) || parseInt(val) <= 0) {
+		return "no es una cedula valida";
+	}
+
+	return;
 }
 
 function valNombre(val) {
-	let msn;
 
 	if (!val || val == "" || val == null) {
-		msn = "no puede estar vacio";
+		return "no puede estar vacio";
 	}
 
-	return msn;
+	return;
 }
 
 function valEmail(val) {
-	let msn;
 
 	if (!val || val == "" || val == null) {
-		msn = "no puede estar vacio";
+		return "no puede estar vacio";
 	}
 
-	return msn;
+	return;
 }
 
 function valUsuario(val) {
-	let msn;
 
 	if (!val || val == "" || val == null) {
-		msn = "no puede estar vacio";
+		return "no puede estar vacio";
 	}
 
-	return msn;
+	return;
 }
 
 function valPassword(val) {
-	let msn;
-
+	
 	if (!val || val == "" || val == null) {
-		msn = "no puede estar vacio";
+		return "no puede estar vacio";
 	}
 
-	return msn;
+	return;
 }
-
 
 /**
  * verifica si se tiene acumulado algun error de validacion local
@@ -101,21 +102,6 @@ function comprobarErrorModelo(em = getModelo()) {
 }
 
 // ==========================================================
-/** 
- * @return un modelo modelo vacio para usarlo como instancia 
- * o para tipar
-*/
-export function getUsuarioModelo(){
-	return getModelo();
-}
-
-/** 
- * @return un modelo de metadatos vacio para usarlo como instancia 
- * o para tipar
-*/
-export function getUsuarioMetadatos() {
-	return getMetadatos();
-}
 
 /** 
  * permite acceder o asignar valores a 
@@ -127,19 +113,17 @@ export function getUsuarioMetadatos() {
  * donde el "GET" (mayuscula) indica el metodo 
  * a usar y el   "listar" es el recurso a pedirle 
  * al servidor
- * @param registro recibe un objeto con los datos 
+ * @param entidad recibe un objeto con los datos 
  * resgitrados por el usuario de la aplicacion 
  * y los valida.
- * @return un modelo con los mensajes de error de 
- * validacion si no hay errores devuelve null
+ * @return una promesa de la peticion al servidor 
+ * con los correspondientes metadatos (ya sean de 
+ * respuesta satisfactoria o de error)
 */
-export function UsuarioController(paramSolicitud, registro = getModelo()) {
+export function ejecutarController(paramSolicitud, entidad = getModelo()) {
 	
 	//metadatos a devolver (se asigna para tipar)
 	let metadatos = getMetadatos();
-
-	//promesa a devolver (se asigna para tipar)
-	let PromesaSolicitud = Promise.resolve(metadatos);
 
 	//extraccion de solicitud
 	let metodo = paramSolicitud.split(":")[0];
@@ -150,8 +134,8 @@ export function UsuarioController(paramSolicitud, registro = getModelo()) {
 	let errorModelo = getModelo();
 	errorModelo = {};
 
-	//asignacion del registro a enviar (si existe)
-	metadatos[nomModel_p] = [registro]; 
+	//asignacion del entidad a enviar (si existe)
+	metadatos[nomModel_p] = [entidad]; 
 
 	//preconfiguracion de url de solicitud
 	let url = urlBase + solicitud;
@@ -165,53 +149,53 @@ export function UsuarioController(paramSolicitud, registro = getModelo()) {
 		case "GET:login":
 			
 			//ejecutar validadores para este caso
-			errorModelo.usuario = valUsuario(registro.usuario);
-			errorModelo.password = valPassword(registro.password);
+			errorModelo.usuario = valUsuario(entidad.usuario);
+			errorModelo.password = valPassword(entidad.password);
 
 			//construccion de peticion
-			url = `${url}?usuario=${registro.usuario}&password=${registro.password}`;
+			url = `${url}?usuario=${entidad.usuario}&password=${entidad.password}`;
 
 			break;
 		
 		case "GET:leerPorId":
 			//ejecutar validadores para este caso
-			errorModelo.cedula = valCedula(registro.cedula);
+			errorModelo.cedula = valCedula(entidad.cedula);
 
 			//construccion de peticion
-			url  = `${url}?cedula=${registro.cedula}`;			
+			url  = `${url}?cedula=${entidad.cedula}`;			
 			break;
 	
 		case "POST:guardar":
 			//ejecutar validadores para este caso
-			errorModelo.cedula = valCedula(registro.cedula);	
-			errorModelo.nombre = valNombre(registro.nombre);	
-			errorModelo.email = valEmail(registro.email);		
-			errorModelo.usuario = valUsuario(registro.usuario);	
-			errorModelo.password = valPassword(registro.password);	
+			errorModelo.cedula = valCedula(entidad.cedula);	
+			errorModelo.nombre = valNombre(entidad.nombre);	
+			errorModelo.email = valEmail(entidad.email);		
+			errorModelo.usuario = valUsuario(entidad.usuario);	
+			errorModelo.password = valPassword(entidad.password);	
 
-			confingPeticion.body = JSON.stringify(registro);
+			confingPeticion.body = JSON.stringify(entidad);
 			confingPeticion.headers = {'Content-Type': 'application/json;charset=UTF-8'};             
 
 			break;      
 			
 		case "PUT:actualizar":
 			//ejecutar validadores para este caso
-			errorModelo.cedula = valCedula(registro.cedula);	
-			errorModelo.nombre = valNombre(registro.nombre);	
-			errorModelo.email = valEmail(registro.email);		
-			errorModelo.usuario = valUsuario(registro.usuario);	
-			errorModelo.password = valPassword(registro.password);	
+			errorModelo.cedula = valCedula(entidad.cedula);	
+			errorModelo.nombre = valNombre(entidad.nombre);	
+			errorModelo.email = valEmail(entidad.email);		
+			errorModelo.usuario = valUsuario(entidad.usuario);	
+			errorModelo.password = valPassword(entidad.password);	
 
-			confingPeticion.body = JSON.stringify(registro);
+			confingPeticion.body = JSON.stringify(entidad);
 			confingPeticion.headers = {'Content-Type': 'application/json;charset=UTF-8'};     
 			break;   
 			
 		case "DELETE:eliminar":
 			//ejecutar validadores para este caso
-			errorModelo.cedula = valCedula(registro.cedula);
+			errorModelo.cedula = valCedula(entidad.cedula);
 
 			//se arma la solicitud con el parametro identificador para eliminacion
-			url = `${url}/${registro.cedula}`
+			url = `${url}/${entidad.cedula}`
 			break;   
 
 		default:
@@ -220,7 +204,7 @@ export function UsuarioController(paramSolicitud, registro = getModelo()) {
 
 	let statusActual = 0;
 
-	return PromesaSolicitud
+	return Promise.resolve()
 	//validacion local
 	.then(()=>{
 		//comprobar errorres de validacion
@@ -251,7 +235,7 @@ export function UsuarioController(paramSolicitud, registro = getModelo()) {
 
 		metadatos[nomModel_p] = Array.isArray(metadatos[nomModel_p]) == true ?
 								metadatos[nomModel_p] : 
-								(metadatos[nomModel_p] == metadatos[nomModel_p] != null) ?
+								(metadatos[nomModel_p] && metadatos[nomModel_p] != null) ?
 										[metadatos[nomModel_p]] :
 										[];
 			return Promise.resolve(metadatos);
