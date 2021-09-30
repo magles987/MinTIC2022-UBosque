@@ -129,9 +129,8 @@ public class UsuarioApi extends Api<Usuario, Long>{
 
 			if (entity.getPassword().equals("") || entity.getPassword() == null) {
 				valMap.put("password", "no puede estar vacio");	
-			}				
-					
-			
+			}						
+				
 			//validacion dedicada a Creacion			
 			if (etiModTipo.equals(this.etiCreacion) ) {
 
