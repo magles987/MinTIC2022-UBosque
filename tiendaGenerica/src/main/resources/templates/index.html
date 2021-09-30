@@ -1,44 +1,53 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Tienda generica</title>
-<!-- <link rel="stylesheet" type="text/css" href="static/css/index.css"> -->
+	<meta charset="UTF-8">
+	<title>Tienda generica</title>
+	<!-- <link rel="stylesheet" type="text/css" href="static/css/index.css"> -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
-<script src="js/session.js"></script>
-<script src="js/main.js" type="module"></script>
+	<script src="js/session.js"></script>
+	<script src="js/main.js" type="module"></script>
 
 </head>
+
 <body>
 	<nav>
-		<a href="#">Usuarios</a>
-		<a href="#">Clientes</a>
-		<a href="#">Proveedores</a>
-		<a href="#">Ventas</a>
-		<a href="#">Reportes</a>
+		<a for="vistaUsuario" href="#">Usuarios</a>
+		<a for="vistaCliente" href="#">Clientes</a>
+		<a for="vistaProveedor" href="#">Proveedores</a>
+		<a for="vistaVenta" href="#">Ventas</a>
+		<a for="vistaReporte" href="#">Reportes</a>
+		<a for="vistaAuth" href="#">Reportes</a>
 	</nav>
-	
+
 	<div id="body-vista">
 
-<!-- vista autentificacion-->
+		<!-- vista autentificacion-->
 
-		<div>
+		<div id="vistaAuth">
 			<h3>Auth</h3>
-			<form id="form-auth" >
+			<form id="formAuth">
 				<fieldset>
 					<legend>Autentificarse</legend>
-					
+
 					<label for="usuario">Usuario</label>
-					<input type="text" name="usuario" id="auth-usuario" required autocomplete="off">
-					<span id="error-auth-usuario"></span>
-					
+					<input type="text" name="usuario" id="authUsuario" required autocomplete="off">
+					<span id="errorAuthUsuario"></span>
+
 					<label for="password">Contraseña</label>
 					<input type="password" name="password" id="auth-password" required autocomplete="off">
 					<span id="error-auth-password"></span>
 				
 					<span style="display: block;" id="info-auth"></span>
+
+					<input type="password" name="password" id="authPassword" required autocomplete="off">
+					<span id="errorAuthPassword"></span>
+
+					<span style="display: block;" id="infoAuth"></span>
+
 
 					<button value="GET:login" type="button">Ingresar</button>
 				</fieldset>
@@ -47,40 +56,299 @@
 
 		<br>
 
-<!-- vista usuario-->
+		<!-- vista usuario-->
 
-		<div>
+		<div id="vistaUsuario">
 			<h3>Usuario</h3>
-			<form id="form-usuario" >
+			<form id="formUsuario">
 				<fieldset>
 					<legend>Consultar Usuario</legend>
-				
+
 					<label for="cedula">Cedula</label>
-					<input type="text" name="cedula" id="usuario-cedula" required autocomplete="off">
-					<span id="error-usuario-cedula"></span>
-					
+					<input type="text" name="cedula" id="usuarioCedula" required autocomplete="off">
+					<span id="errorUsuarioCedula"></span>
+
 					<label for="nombre">Nombre</label>
-					<input type="text" name="nombre" id="usuario-nombre" required autocomplete="off">
-					<span id="error-usuario-nombre"></span>
-									
+					<input type="text" name="nombre" id="usuarioNombre" required autocomplete="off">
+					<span id="errorUsuarioNombre"></span>
+
 					<label for="email">Email</label>
-					<input type="text" name="email" id="usuario-email" required autocomplete="off">
-					<span id="error-usuario-email"></span>
+					<input type="text" name="email" id="usuarioEmail" required autocomplete="off">
+					<span id="errorUsuarioEmail"></span>
 
 					<label for="usuario">Usuario</label>
-					<input type="text" name="usuario" id="usuario-usuario" required autocomplete="off">
-					<span id="error-usuario-usuario"></span>
-					
-					<label for="password">Contraseña</label>
-					<input type="password" name="password" id="usuario-password" required autocomplete="off">
-					<span id="error-usuario-password"></span>
+					<input type="text" name="usuario" id="usuarioUsuario" required autocomplete="off">
+					<span id="errorUsuarioUsuario"></span>
 
-					<span style="display: block;" id="info-usuario"></span>
+					<label for="password">Contraseña</label>
+					<input type="password" name="password" id="usuarioPassword" required autocomplete="off">
+					<span id="errorUsuarioPassword"></span>
+
+					<span style="display: block;" id="infoUsuario"></span>
 
 					<button value="GET:leerPorId" type="button">Consultar</button>
 					<button value="POST:guardar" type="button">Crear</button>
+					<button value="PUT:actualizar" type="button">Actualizar</button>
+					<button value="DELETE:eliminar" type="button">Borrar</button>
+				</fieldset>
+			</form>
+		</div>
+
+		<!-- vista Cliente-->
+
+		<div id="vistaCliente">
+			<h3>Cliente</h3>
+			<form id="formCliente">
+				<fieldset>
+					<legend>Consultar Cliente</legend>
+
+					<label for="cedula">Cedula</label>
+					<input type="text" name="cedula" id="clienteCedula" required autocomplete="off">
+					<span id="errorClienteCedula"></span>
+
+					<label for="nombre">Nombre</label>
+					<input type="text" name="nombre" id="clienteNombre" required autocomplete="off">
+					<span id="errorClienteNombre"></span>
+
+					<label for="email">Email</label>
+					<input type="text" name="email" id="clienteEmail" required autocomplete="off">
+					<span id="errorClienteEmail"></span>
+
+					<label for="direccion">Direccion</label>
+					<input type="text" name="direccion" id="clienteDireccion" required autocomplete="off">
+					<span id="errorClienteDireccion"></span>
+
+					<label for="telefono">Telefono</label>
+					<input type="text" name="telefono" id="clienteTelefono" required autocomplete="off">
+					<span id="errorClienteTelefono"></span>
+
+					<span style="display: block;" id="infoCliente"></span>
+
+					<button value="GET:leerPorId" type="button">Consultar</button>
+					<button value="POST:guardar" type="button">Crear</button>
+					<button value="PUT:actualizar" type="button">Actualizar</button>
+					<button value="DELETE:eliminar" type="button">Borrar</button>
+				</fieldset>
+			</form>
+		</div>
+
+		<!-- vista Proveedor-->
+
+		<div id="vistaProveedor">
+			<h3>Proveedor</h3>
+			<form id="formProveedor">
+				<fieldset>
+					<legend>Consultar Proveedor</legend>
+
+					<label for="nit">NIT</label>
+					<input type="text" name="nit" id="proveedorNit" required autocomplete="off">
+					<span id="errorProveedorNit"></span>
+
+					<label for="nombre">Nombre</label>
+					<input type="text" name="nombre" id="proveedorNombre" required autocomplete="off">
+					<span id="errorProveedorNombre"></span>
+
+					<label for="direccion">Direccion</label>
+					<input type="text" name="direccion" id="proveedorDireccion" required autocomplete="off">
+					<span id="errorProveedorDireccion"></span>
+
+					<label for="telefono">Telefono</label>
+					<input type="text" name="telefono" id="proveedorTelefono" required autocomplete="off">
+					<span id="errorProveedorTelefono"></span>
+
+					<label for="ciudad">Ciudad</label>
+					<input type="text" name="ciudad" id="proveedorCiudad" required autocomplete="off">
+					<span id="errorProveedorCiudad"></span>
+
+					<span style="display: block;" id="infoProveedor"></span>
+
+					<button value="GET:leerPorId" type="button">Consultar</button>
+					<button value="POST:guardar" type="button">Crear</button>
+					<button value="PUT:actualizar" type="button">Actualizar</button>
+					<button value="DELETE:eliminar" type="button">Borrar</button>
+				</fieldset>
+			</form>
+		</div>
+
+		<!-- vista Producto-->
+
+		<div id="vistaProducto">
+			<h3>Producto</h3>
+			<form id="formProducto">
+				<fieldset>
+					<legend>Consultar Producto</legend>
+					<!-- 				
+					<label for="codigo">Codigo</label>
+					<input type="text" name="codigo" id="productoCodigo" required autocomplete="off">
+					<span id="errorProductoCodigo"></span>
+					
+					<label for="nombre">Nombre</label>
+					<input type="text" name="nombre" id="productoNombre" required autocomplete="off">
+					<span id="errorProductoNombre"></span>
+
+					<label for="proveedor">Nit Proveedor</label>
+					<input type="text" name="proveedor" id="productoProveedor" required autocomplete="off">
+					<span id="errorProductoProveedor"></span>
+					
+					<label for="precioCompra">Precio de compra</label>
+					<input type="text" name="precioCompra" id="productoPrecioCompra" required autocomplete="off">
+					<span id="errorProductoPrecioCompra"></span>
+					
+					<label for="ivacompra">IVA Compra</label>
+					<input type="text" name="ivacompra" id="productoIvacompra" required autocomplete="off">
+					<span id="errorProductoIvacompra"></span>						
+
+					<label for="precioVenta">Precio de venta</label>
+					<input type="text" name="precioVenta" id="productoPrecioVenta" required autocomplete="off">
+					<span id="errorProductoPrecioVenta"></span>		 
+-->
+
+					<!-- OJO este campo es para cargar el archivo -->
+
+					<label for="archivo">Selecciona archivo</label>
+					<input type="file" name="archivo" id="producto-archivo" required autocomplete="off">
+					<span id="error-producto-archivo"></span>
+
+
+					<span style="display: block;" id="infoProducto"></span>
+					<!-- 
+					<button value="GET:leerPorId" type="button">Consultar</button>
+					<button value="POST:guardar" type="button">Crear</button>
 					<button value="PUT:actualizar" type="button">Actualizar</button>		
-					<button value="DELETE:eliminar" type="button">Borrar</button>			
+					<button value="DELETE:eliminar" type="button">Borrar</button>	 
+-->
+
+					<!-- OJO este boton es para enviar el archivo -->
+
+					<button value="POST:cargar-archivo" type="button">Cargar</button>
+
+				</fieldset>
+			</form>
+		</div>
+
+		<!-- vista Venta-->
+
+		<div id="vistaVenta">
+			<h3>Venta</h3>
+			<form id="formVenta">
+				<fieldset>
+					<legend>Consultar Venta</legend>
+
+					<div for="ventaCliente" style="display: inline;">
+						<label for="cedula">Cedula</label>
+						<input type="text" name="cedula" id="ventaCedulaCliente" required autocomplete="off">
+						<span id="errorVentaCedulaCliente"></span>
+	
+						<button value="GET:leerPorId" type="button">Consultar</button>
+	
+						<label for="nombre">Cliente</label>
+						<input type="text" name="nombre" id="ventaNombreCliente" required autocomplete="off" disabled>	
+					</div>
+
+					<label for="consec">Consec.</label>
+					<input type="text" name="consec" id="ventaConsec" required autocomplete="off" disabled>
+
+					<table>
+
+						<thead>
+							<tr>
+								<th><label>Cod. Producto</label></th>
+								<th><label>Nombre Producto</label></th>
+								<th><label>Cant.</label></th>
+								<th><label>Vlr. Total</label></th>
+							</tr>
+						</thead>													
+
+						<tbody>
+							<tr for="ventaProducto">
+								<td>
+									<input type="text" name="codigo" required autocomplete="off">
+									<span for="codigo"></span>
+									<button value="GET:leerPorId" type="button">Consultar</button>
+								</td>
+	
+								<td>
+									<input type="text" name="nombre" required autocomplete="off" disabled>
+								</td>
+	
+								<td>
+									<input type="text" name="cantidadProducto" required autocomplete="off" disabled>
+								</td>
+	
+								<td>
+									<input type="text" name="valorTotal" required autocomplete="off" disabled>
+								</td>
+							</tr>
+	
+							<tr for="ventaProducto">
+								<td>
+									<input type="text" name="codigo" required autocomplete="off">
+									<span for="codigo"></span>
+									<button value="GET:leerPorId" type="button">Consultar</button>
+								</td>
+	
+								<td>
+									<input type="text" name="nombre" required autocomplete="off" disabled>
+								</td>
+	
+								<td>
+									<input type="text" name="cantidadProducto" required autocomplete="off" disabled>
+								</td>
+	
+								<td>
+									<input type="text" name="valorTotal" required autocomplete="off" disabled>
+								</td>
+							</tr>
+	
+							<tr for="ventaProducto">
+								<td>
+									<input type="text" name="codigo" required autocomplete="off">
+									<span for="codigo"></span>
+									<button value="GET:leerPorId" type="button">Consultar</button>
+								</td>
+	
+								<td>
+									<input type="text" name="nombre" required autocomplete="off" disabled>
+								</td>
+	
+								<td>
+									<input type="number" name="cantidadProducto" required autocomplete="off" disabled>
+								</td>
+	
+								<td>
+									<input type="text" name="valorTotal" required autocomplete="off" disabled>
+								</td>
+							</tr>
+						</tbody>
+
+						<tfoot>
+							<tr>
+								<td></td>
+								<td></td>
+								<td><label>Total Venta</label></td>
+								<td><input type="text" name="valorVenta" id="ventaValorVenta" required autocomplete="off" disabled>	</td>
+															
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>								
+								<td><label>IVA Venta</label></td>
+								<td><input type="text" name="ivaVenta" id="ventaIvaVenta" required autocomplete="off" disabled>	</td>															
+							</tr>		
+							<tr>
+								<td></td>
+								<td></td>									
+								<td><label>Total con IVA</label></td>
+								<td><input type="text" name="totalVenta" id="ventaTotalVenta" required autocomplete="off" disabled></td>																
+							</tr>													
+						</tfoot>
+
+					</table>
+
+					<span style="display: block;" id="infoVenta"></span>
+
+					<button id="btnVentaConfirmar" value="POST:guardar" type="button">Confirmar</button>					
+
 				</fieldset>
 			</form>
 		</div>
@@ -88,4 +356,5 @@
 
 	</div>
 </body>
+
 </html>
