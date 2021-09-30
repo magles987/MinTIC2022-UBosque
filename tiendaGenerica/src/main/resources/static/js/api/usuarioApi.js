@@ -26,7 +26,9 @@ export function getModelo(){
  * @return un modelo de metadatos vacio para usarlo como instancia 
  * o para tipar
 */
+
 export function getMetadatos() {
+
 	return {
 		tipoConsulta:"",
 		usuarios : [getModelo()],		
@@ -87,6 +89,7 @@ function valPassword(val) {
 
 	return;
 }
+
 
 /**
  * verifica si se tiene acumulado algun error de validacion local
@@ -172,6 +175,7 @@ export function ejecutarController(paramSolicitud, entidad = getModelo()) {
 			errorModelo.email = valEmail(entidad.email);		
 			errorModelo.usuario = valUsuario(entidad.usuario);	
 			errorModelo.password = valPassword(entidad.password);	
+
 
 			confingPeticion.body = JSON.stringify(entidad);
 			confingPeticion.headers = {'Content-Type': 'application/json;charset=UTF-8'};             

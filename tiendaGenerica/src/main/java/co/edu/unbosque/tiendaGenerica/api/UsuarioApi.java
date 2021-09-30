@@ -100,7 +100,6 @@ public class UsuarioApi extends Api<Usuario, Long>{
 
 	//=========================================================
 	//Manejadores embebidos de validacion y errores de la entidad
-	//---Deberian estar en otro paquete????---
 	
 	@Override
 	protected Map<String, Object> getMapErroresValidacion(Usuario entity, Long id, String etiModTipo) throws Exception {
@@ -131,7 +130,7 @@ public class UsuarioApi extends Api<Usuario, Long>{
 			if (entity.getPassword().equals("") || entity.getPassword() == null) {
 				valMap.put("password", "no puede estar vacio");	
 			}						
-			
+				
 			//validacion dedicada a Creacion			
 			if (etiModTipo.equals(this.etiCreacion) ) {
 
