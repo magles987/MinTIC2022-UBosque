@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import co.edu.unbosque.tiendaGenerica.service.MyService;
 
@@ -50,6 +51,7 @@ public abstract class Api<TModel, Tid> {
 	 * @return un objeto ResponseEntity que envuelve los registros 
 	 * leidos y los metadatos de la respuesta
 	 */
+	@GetMapping("/leerPorId")
 	public ResponseEntity<Map<String, Object>> leerPorId(Tid id){
 		
 		HttpStatus httpStatus;
@@ -62,6 +64,14 @@ public abstract class Api<TModel, Tid> {
 			TModel entity = this.service.leerPorId(id);
 			httpStatus = HttpStatus.OK;			
 			metadataResMap.put(this.nomModel_p, entity);
+			
+			//enviar mensaje de acuerdo a si se 
+			//encontro o no el id
+			if(entity != null) {
+				metadataResMap.put(this.nomMsn, "se encontro su identificador");
+			}else {
+				metadataResMap.put(this.nomMsn, "no se encontro su identificador");
+			}
 						
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,6 +91,7 @@ public abstract class Api<TModel, Tid> {
 	 * @return un objeto ResponseEntity que envuelve los registros 
 	 * leidos y los metadatos de la respuesta
 	 */	
+	@GetMapping("/listar")
 	public ResponseEntity<Map<String, Object>> listar(){
 		
 		HttpStatus httpStatus;
@@ -163,11 +174,10 @@ public abstract class Api<TModel, Tid> {
 						
 			if(etiModTipo.equals(this.etiCreacion)){								
 				
-				this.service.crear(entity);	
+				var newEntity = this.service.crear(entity);	
 				//--Opcional---
 				//devolver el objeto recien creado ()
-				//entity = -- Como se recupera el nuevo id????---
-				metadataResMap.put(this.nomModel_p, entity);
+				metadataResMap.put(this.nomModel_p, newEntity);
 				
 			} else if(etiModTipo.equals(this.etiActualizacion)) {
 

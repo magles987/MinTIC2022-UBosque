@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity(name = "clientes")
 public class Cliente implements Serializable {
 
+
 	private static final long serialVersionUID = 2029805538112887336L;
 
 	@Id
@@ -76,3 +77,6 @@ public class Cliente implements Serializable {
 	}
 
 }
+
+
+
