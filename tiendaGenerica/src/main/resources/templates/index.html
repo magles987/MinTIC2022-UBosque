@@ -84,6 +84,44 @@
 				</fieldset>
 			</form>
 		</div>
+		
+		<!-- vista cliente-->
+
+		<div>
+			<h3>Cliente</h3>
+			<form id="form-cliente" >
+				<fieldset>
+					<legend>Consultar Cliente</legend>
+				
+					<label for="cedula">Cedula</label>
+					<input type="text" name="cedula" id="cliente-cedula" required autocomplete="off">
+					<span id="error-cliente-cedula"></span>
+					
+					<label for="nombre">Nombre</label>
+					<input type="text" name="nombre" id="cliente-nombre" required autocomplete="off">
+					<span id="error-cliente-nombre"></span>
+					
+					<label for="direccion">Dirección</label>
+					<input type="text" name="direccion" id="cliente-direccion" required autocomplete="off">
+					<span id="error-cliente-direccion"></span>
+									
+					<label for="telefono">Teléfono</label>
+					<input type="text" name="telefono" id="cliente-telefono" required autocomplete="off">
+					<span id="error-cliente-telefono"></span>					
+					
+					<label for="email">Correo</label>
+					<input type="text" name="email" id="cliente-email" required autocomplete="off">
+					<span id="error-cliente-email"></span>
+
+					<span style="display: block;" id="info-cliente"></span>
+
+					<button value="GET:leerPorId" type="button">Consultar</button>
+					<button value="POST:guardar" type="button">Crear</button>
+					<button value="PUT:actualizar" type="button">Actualizar</button>		
+					<button value="DELETE:eliminar" type="button">Borrar</button>			
+				</fieldset>
+			</form>
+		</div>
 
 
 	</div>
