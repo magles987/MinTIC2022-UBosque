@@ -127,6 +127,10 @@ public class UsuarioApi extends Api<Usuario, Long>{
 			//validacion dedicada a Creacion			
 			if (etiModTipo.equals(this.etiCreacion) ) {
 
+				if(this.service.existePorId(id)) {
+					valMap.put("cedula", "Ya existe");
+				}				
+				
 				if (this.service.existePorUsuario(entity.getUsuario())) {
 					valMap.put("usuario", "ese usuario ya esta registrado");
 				}
