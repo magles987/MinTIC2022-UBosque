@@ -55,6 +55,8 @@ function limpiarErrores() {
 	$(selErrorUsuario).text("");
 	$(selErrorPassword).text("");
 
+	$(selInfoForm).text("");	
+
 	return;
 }
 
@@ -139,10 +141,13 @@ function clickControllers(e){
 					if (metadatos.usuarios.length == 0) {
 						metadatos.errorValidacion = UsuarioCtrl.getModelo();
 						metadatos.errorValidacion.cedula = "no existe";
+						limpiarCampos();
 						return Promise.reject(metadatos);
 					}
 
-					accederCampos(metadatos.usuarios[0]);									
+					accederCampos(metadatos.usuarios[0]);
+					limpiarErrores();
+
 					break;
 
 				default:
