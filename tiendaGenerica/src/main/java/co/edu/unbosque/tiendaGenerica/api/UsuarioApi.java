@@ -29,13 +29,6 @@ public class UsuarioApi extends Api<Usuario, Long>{
 		var r = super.leerPorId(cedula);
 		return r;
 	}		
-		
-	@Override
-	@GetMapping("/listar")
-	public ResponseEntity<Map<String, Object>> listar() {		
-		var r = super.listar();
-		return r;
-	}	
 	
 	//exclusivo para el login:
 	@GetMapping("login")

@@ -1,5 +1,5 @@
 import * as UsuarioCtrl from "../api/usuarioApi.js";
-
+import { actualizarVista, selNavPrincipal } from "../main.js";
 //====================================================    
 //selectores de campos del form		
 
@@ -37,6 +37,7 @@ function limpiarCampos() {
 function limpiarErrores() {
 	$(selErrorUsuario).text("");
 	$(selErrorPassword).text("");
+	$(selInfoForm).text("");
 	return;
 }
 
@@ -44,29 +45,29 @@ function limpiarErrores() {
 /** 
  * permite acceder o asignar valores a 
  * los campos del formulario
- * @param registro recibe un objeto con los valores
+ * @param entidad recibe un objeto con los valores
  * a cargar en los campos del formulario o un null.
  * si este objeto es null se asume que se 
  * quiere devolver un objeto que contenga cada 
  * valor de cada campo del formulario
 */
-function accederCampos(registro = UsuarioCtrl.getModelo()) {
+function accederCampos(entidad = UsuarioCtrl.getModelo()) {
 
-	//evaluar el contenido de registro
-	if (registro == null || typeof (registro) != "object") {
+	//evaluar el contenido de entidad
+	if (entidad == null || typeof (entidad) != "object") {
 
-		registro = {};
+		entidad = {};
 
-		registro.usuario = $(selCampoUsuario).val();
-		registro.password = $(selCampoPassword).val();
+		entidad.usuario = $(selCampoUsuario).val();
+		entidad.password = $(selCampoPassword).val();
 
 	} else {
 
-		$(selCampoUsuario).val(registro.usuario);
-		$(selCampoPassword).val(registro.password);
+		$(selCampoUsuario).val(entidad.usuario);
+		$(selCampoPassword).val(entidad.password);
 
 	}
-	return registro;
+	return entidad;
 }
 
 /**
@@ -89,12 +90,12 @@ function setTagsError(errorModelo = UsuarioCtrl.getModelo()) {
 	e.preventDefault();
 
 	//se inicializa solo para tipar
-	let registro = UsuarioCtrl.getModelo();
-	registro = accederCampos(null);
+	let entidad = UsuarioCtrl.getModelo();
+	entidad = accederCampos(null);
 
 	let paramSolicitud = e.target.value;
 
-	UsuarioCtrl.ejecutarController(paramSolicitud, registro)
+	UsuarioCtrl.ejecutarController(paramSolicitud, entidad)
 	.then((metadatos)=>{
 
 		limpiarCampos();
@@ -103,7 +104,9 @@ function setTagsError(errorModelo = UsuarioCtrl.getModelo()) {
 		//deja sesion abierta de usuario
 		cedulaUsuarioActual = metadatos.usuarios[0].cedula;
 
-		//aqui debe acceder a otra vista
+		//aqui debe acceder a otra vista y mostrar navegacion principal
+		$(selNavPrincipal).show();
+		actualizarVista("#vistaUsuario");
 	})
 	.catch((eMt)=>{
 		let metadatos = UsuarioCtrl.getMetadatos();
@@ -134,6 +137,10 @@ export function activarVista() {
 
 	//eliminar la cedula del usuario anterior
 	cedulaUsuarioActual = -1;
+
+	//CERRAR NAVEGACION PRINCIPAL ---(descomentar en version beta)--
+	//$(selNavPrincipal).hide();
+
 }
 
 export function desactivarVista() {
@@ -142,7 +149,10 @@ export function desactivarVista() {
 	//limpiar todos los campos
 	limpiarCampos();
 	//limpiar variables de modulo 
-
+	
 }
+
+
+
 
 
