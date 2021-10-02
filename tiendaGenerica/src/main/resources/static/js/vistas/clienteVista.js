@@ -1,164 +1,190 @@
-import {ClienteController, getClienteModelo, getClienteMetadatos } from "../api/clienteApi.js";
+import * as ClienteCtrl from "../api/clienteApi.js";
 
-$(document).ready(function() {
+//====================================================    
+//selectores de campos del form		
 
-	//====================================================    
-	//selectores de campos del form		
+let selForm = "#formCliente";
 
-	let selForm = "#form-cliente";
+//selector de campos
+let selCampoCedula = "#clienteCedula";
+let selCampoNombre = "#clienteNombre";
+let selCampoDireccion = "#clienteDireccion";
+let selCampoTelefono = "#clienteTelefono";
+let selCampoEmail = "#clienteEmail";
 
-	//selector de campos
-	let selCampoCedula = "#cliente-cedula";
-	let selCampoNombre = "#cliente-nombre";
-	let selCampoDireccion = "#cliente-direciion";
-	let selCampoTelefono = "#cliente-telefono";
-	let selCampoEmail = "#cliente-email";
-
-	//selector de errores
-	let selErrorCedula = "#error-cliente-cedula";
-	let selErrorNombre = "#error-cliente-nombre";
-	let selErrorDireccion = "#error-cliente-direccion";
-	let selErrorTelefono = "#error-cliente-telefono";
-	let selErrorEmail = "#error-cliente-email";
+//selector de errores
+let selErrorCedula = "#errorClienteCedula";
+let selErrorNombre = "#errorClienteNombre";
+let selErrorDireccion = "#errorClienteDireccion";
+let selErrorTelefono = "#errorClienteTelefono";
+let selErrorEmail = "#errorClienteEmail";
 
 
-	//Selector informativo general para el form
-	let selInfoForm = "#info-cliente";
+//Selector informativo general para el form
+let selInfoForm = "#infoCliente";
 
-	//====================================================  
-	/** 
-	 * Limpia los campos del formulario 
-	 * y devuelve un modelo vacio
-	*/
-	function limpiarCampos() {
+//selectores de eventos en general
+let selEventBotones = `${selForm} button`;
 
-		$(selCampoCedula).val("");
-		$(selCampoNombre).val("");
-		$(selCampoDireccion).val("");
-		$(selCampoTelefono).val("");
-		$(selCampoEmail).val("");
+//====================================================  
+/** 
+ * Limpia los campos del formulario 
+ * y devuelve un modelo vacio
+*/
+function limpiarCampos() {
 
-		$(selErrorCedula).text("");
-		$(selErrorNombre).text("");
-		$(selErrorDireccion).text("");
-		$(selErrorTelefono).text("");
-		$(selErrorEmail).text("");
+	$(selCampoCedula).val("");
+	$(selCampoNombre).val("");
+	$(selCampoDireccion).val("");
+	$(selCampoTelefono).val("");
+	$(selCampoEmail).val("");
+	
+	limpiarErrores();
 
-		return;
+	return;
+}
+
+/** 
+ * Limpia las etiquetas de error 
+ * del formulario
+*/
+function limpiarErrores() {
+
+	$(selErrorCedula).text("");
+	$(selErrorNombre).text("");
+	$(selErrorDireccion).text("");
+	$(selErrorTelefono).text("");
+	$(selErrorEmail).text("");	
+	$(selInfoForm).text("");
+
+
+	return;
+}
+
+//====================================================
+/** 
+ * Permite acceder o asignar valores a 
+ * los campos del formulario
+ * @param entidad Recibe un objeto con los valores
+ * a cargar en los campos del formulario o un null.
+ * Si este objeto es null se asume que se 
+ * quiere devolver un objeto que contenga cada 
+ * valor de cada campo del formulario
+*/
+function accederCampos(entidad = ClienteCtrl.getModelo()) {
+
+	//Evaluar el contenido de entidad
+	if (entidad == null || typeof (entidad) != "object") {
+
+		entidad = {};
+
+		entidad.cedula = $(selCampoCedula).val().trim();
+		entidad.nombre = $(selCampoNombre).val().trim();
+		entidad.direccion = $(selCampoDireccion).val().trim();
+		entidad.telefono = $(selCampoTelefono).val().trim();
+		entidad.email = $(selCampoEmail).val().trim();
+
+	} else {
+
+		$(selCampoCedula).val(entidad.cedula);
+		$(selCampoNombre).val(entidad.nombre);
+		$(selCampoDireccion).val(entidad.email);
+		$(selCampoTelefono).val(entidad.telefono);
+		$(selCampoEmail).val(entidad.email);
 	}
+	return entidad;
+}
 
-	/** 
-	 * Limpia las etiquetas de error 
-	 * del formulario
-	*/
-	function limpiarErrores() {
+/**
+ * Agrega los mensajes de error de validación 
+ * que se tengan diponibles
+ */
+function setTagsError(errorModelo = ClienteCtrl.getModelo()) {
+	$(selErrorCedula).text(errorModelo.cedula);
+	$(selErrorNombre).text(errorModelo.nombre);
+	$(selErrorDireccion).text(errorModelo.direccion);
+	$(selErrorTelefono).text(errorModelo.telefono);
+	$(selErrorEmail).text(errorModelo.email);
+}
 
-		$(selErrorCedula).text("");
-		$(selErrorNombre).text("");
-		$(selErrorDireccion).text("");
-		$(selErrorTelefono).text("");
-		$(selErrorEmail).text("");
+//====================================================       
+/**realiza la configuracion desde la vista para 
+ * llamar a los controllers cuando se a detectado un 
+ * click en algun botonque solicita peticion CRUD
+ * @param e el evento con el que se disparo la ejecucion
+ * */
+function clickControllers(e) {
+	//Desactivar el evento
+	e.preventDefault();
 
-		return;
-	}
+	//Se inicializa solo para tipar
+	let entidad = ClienteCtrl.getModelo();
+	entidad = accederCampos(null);
 
-	//====================================================
-	/** 
-	 * Permite acceder o asignar valores a 
-	 * los campos del formulario
-	 * @param registro Recibe un objeto con los valores
-	 * a cargar en los campos del formulario o un null.
-	 * Si este objeto es null se asume que se 
-	 * quiere devolver un objeto que contenga cada 
-	 * valor de cada campo del formulario
-	*/
-	function accederCampos(registro = getClienteModelo()) {
+	let paramSolicitud = e.target.value;
 
-		//Evaluar el contenido de registro
-		if (registro == null || typeof (registro) != "object") {
+	ClienteCtrl.ejecutarController(paramSolicitud, entidad)
+		.then((metadatos) => {
 
-			registro = {};
+			switch (metadatos.tipoConsulta) {
+				case "creacion":
+				case "actualizacion":
+				case "eliminacion":
+					limpiarCampos();
+					limpiarErrores();
+					$(selInfoForm).text(metadatos.msn);
 
-			registro.cedula = $(selCampoCedula).val();
-			registro.nombre = $(selCampoNombre).val();
-			registro.direccion = $(selCampoDireccion).val();
-			registro.telefono = $(selCampoTelefono).val();
-			registro.email = $(selCampoEmail).val();
+					break;
 
-		} else {
+				case "lectura":
+					//determinar si la consulta por cedula es vacia
+					if (metadatos.clientes.length == 0) {
+						metadatos.errorValidacion = ClienteCtrl.getModelo();
+						metadatos.errorValidacion.cedula = "No existe";
+						return Promise.reject(metadatos);
+					}
 
-			$(selCampoCedula).val(registro.cedula);
-			$(selCampoNombre).val(registro.nombre);
-			$(selCampoDireccion).val(registro.email);
-			$(selCampoTelefono).val(registro.telefono);
-			$(selCampoEmail).val(registro.email);
-		}
-		return registro;
-	}
+					accederCampos(metadatos.clientes[0]);
+					break;
 
-	/**
-	 * Agrega los mensajes de error de validación 
-	 * que se tengan diponibles
-	 */
-	function setTagsError(errorModelo = getClienteModelo()) {
-		$(selErrorCedula).text(errorModelo.cedula);
-		$(selErrorNombre).text(errorModelo.nombre);
-		$(selErrorDireccion).text(errorModelo.direccion);
-		$(selErrorTelefono).text(errorModelo.telefono);
-		$(selErrorEmail).text(errorModelo.email);
-	}
+				default:
+					break;
+			}
+		})
+		.catch((eMt) => {
+			let metadatos = ClienteCtrl.getMetadatos();
+			metadatos = eMt;
 
-	//====================================================       
-	/**Configura el evento de cada boton del form correspondiente */
-	$(`${selForm} button`).click(function(e) {
-		//Desactivar el evento
-		e.preventDefault();
+			limpiarErrores();
 
-		//Se inicializa solo para tipar
-		let registro = getClienteModelo();
-		registro = accederCampos(null);
+			if (metadatos.errorValidacion
+				&& metadatos.errorValidacion != null
+				&& typeof (metadatos.errorValidacion) == "object") {
 
-		let paramSolicitud = e.target.value;
+				setTagsError(metadatos.errorValidacion);
+			}
 
-		ClienteController(paramSolicitud, registro)
-			.then((metadatos) => {
+			$(selInfoForm).text(metadatos.msn);
 
-				switch (metadatos.tipoConsulta) {
-					case "creacion":
-					case "actualizacion":
-					case "eliminacion":
-						limpiarCampos();
-						limpiarErrores();
-						$(selInfoForm).text(metadatos.msn);
+		});
 
-						break;
+}
 
-					case "lectura":
-						accederCampos(metadatos.clientes[0]);
-						break;
+//====================================================  
+//Estados de la vista
 
-					default:
-						break;
-				}
+export var selIdVista = "#vistaCliente";
 
-				metadatos.clientes
-			})
-			.catch((eMt) => {
-				let metadatos = getClienteMetadatos();
-				metadatos = eMt;
+export function activarVista() {
+	//Activar TODOS los eventos que se usen para la vista
+	$(selEventBotones).click(clickControllers);
+}
 
-				limpiarErrores();
+export function desactivarVista() {
+	//Desactivar TODOS los eventos que se usen para la vista
+	$(selEventBotones).off();
+	//Limpiar todos los campos
+	limpiarCampos();
+	//Limpiar variables de modulo 
 
-				if (metadatos.errorValidacion
-					&& metadatos.errorValidacion != null
-					&& typeof (metadatos.errorValidacion) == "object") {
-
-					setTagsError(metadatos.errorValidacion);
-				}
-
-				$(selInfoForm).text(metadatos.msn);
-
-			});
-	});
-
-});
+}

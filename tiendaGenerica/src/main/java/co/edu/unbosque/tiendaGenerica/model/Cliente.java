@@ -30,9 +30,8 @@ public class Cliente implements Serializable {
 	@Column(name = "email_cliente", length = 255, nullable = false, unique = true)
 	private String email;
 
-	// relacion bidireccional para la relacion usuario-venta
+	// relacion bidireccional para la relacion cliente-venta
 //	@JsonManagedReference //evita bucle de JSON infinito
-//	@JsonIgnore
 //    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    private List<Venta> ventas;
 

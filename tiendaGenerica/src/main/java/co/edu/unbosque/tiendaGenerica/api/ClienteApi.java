@@ -32,14 +32,7 @@ public class ClienteApi extends Api<Cliente, Long>{
 		var r = super.leerPorId(cedula);
 		return r;
 	}		
-		
-	@Override
-	@GetMapping("/listar")
-	public ResponseEntity<Map<String, Object>> listar() {		
-		var r = super.listar();
-		return r;
-	}	
-	
+			
 	@Override
 	@PostMapping("/guardar") 
 	public ResponseEntity<Map<String, Object>> guardar(@RequestBody Cliente entity) {
@@ -75,23 +68,26 @@ public class ClienteApi extends Api<Cliente, Long>{
 			) {
 		
 			if (entity.getCedula() == 0) {
-				valMap.put("cedula", "no tiene un valor valido");
+				valMap.put("cedula", "No tiene un valor valido");
 			}
 			
 			if (entity.getNombre().equals("") || entity.getNombre() == null) {
-				valMap.put("nombre", "no puede estar vacio");	
+				valMap.put("nombre", "No puede estar vacio");	
 			}
 			
 			if (entity.getEmail().equals("") || entity.getEmail() == null) {
-				valMap.put("email", "no puede estar vacio");	
+				valMap.put("email", "No puede estar vacio");	
 			}		
 			
 			//Validación dedicada a creación			
 			if (etiModTipo.equals(this.etiCreacion) ) {
-
+				
+				if(this.service.existePorId(id)) {
+					valMap.put("cedula", "Ya existe");
+				}
 				
 				if (this.service.existePorEmail(entity.getEmail())) {
-					valMap.put("email", "ese email ya esta registrado");
+					valMap.put("email", "El email ya esta registrado");
 				}				
 			}
 			
@@ -104,7 +100,7 @@ public class ClienteApi extends Api<Cliente, Long>{
 		} else if(etiModTipo.equals(this.etiEliminacion)){
 			
 			if(this.service.existePorId(id) == false) {
-				valMap.put("cedula", "no existe");
+				valMap.put("cedula", "No existe");
 			}
 			
 			if (id <= 0) {

@@ -20,7 +20,7 @@ $(document).ready(function(){
     //solo en pruebas:
     AuthVista.activarVista();  
     UsuarioVista.activarVista();   
-//    ClienteVista.activarVista(); 
+    ClienteVista.activarVista(); 
 //    ProveedorVista.activarVista();  
 //    VentaVista.activarVista();   
 //    ProductoVista.activarVista();
