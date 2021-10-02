@@ -4,12 +4,16 @@ import * as ProveedorVista from "./vistas/proveedorVista.js";
 import * as ClienteVista from "./vistas/clienteVista.js";
 import * as ProductoVista from "./vistas/productoVista.js";
 import * as VentaVista from "./vistas/ventaVista.js";
-//--reportes vista falta---
+import * as ReporteVista from "./vistas/reporteVista.js";
+
+//================================================
+/**selector navegacion principal */
+export var selNavPrincipal = `body > nav a`;
 
 //================================================
 $(document).ready(function(){
     //
-    $(`nav a`).click((e)=>{
+    $(selNavPrincipal).click((e)=>{
         let selIdVista = `#${e.target.getAttribute("for")}`;
         actualizarVista(selIdVista)
     });
@@ -20,21 +24,22 @@ $(document).ready(function(){
     //solo en pruebas:
     AuthVista.activarVista();  
     UsuarioVista.activarVista();   
-//    ClienteVista.activarVista(); 
-//    ProveedorVista.activarVista();  
-//    VentaVista.activarVista();   
-//    ProductoVista.activarVista();
+    //ClienteVista.activarVista(); 
+    //ProveedorVista.activarVista();  
+    //VentaVista.activarVista();   
+    //ProductoVista.activarVista();
+    //ReporteVista.activarVista();
 });
 
 //================================================
 /**
  * permite inicializar la vista escogida y cerrar 
  * las otras
- * @param selIdVista el id del elemento html que 
+ * @param selIdVista el selector id del elemento html que 
  * le corresponde la vista selccionada por el 
  * usuario
  */
-function actualizarVista(selIdVista) {
+export function actualizarVista(selIdVista) {
     
     cerrarVistas();
 
@@ -65,6 +70,10 @@ function actualizarVista(selIdVista) {
             VentaVista.activarVista();            
             break;     
 
+        case ReporteVista.selIdVista:
+            ReporteVista.activarVista();            
+            break;               
+
         default:
             break;
     }
@@ -94,4 +103,7 @@ function cerrarVistas() {
 
     VentaVista.desactivarVista();
     $(VentaVista.selIdVista).hide();     
+
+    ReporteVista.desactivarVista();
+    $(ReporteVista.selIdVista).hide();       
 }
