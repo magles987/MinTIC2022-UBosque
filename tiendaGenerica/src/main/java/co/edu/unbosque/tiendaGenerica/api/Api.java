@@ -45,7 +45,7 @@ public abstract class Api<TModel, Tid> {
 	}
 
 	/**
-	 * conecta y envia la consulta de acuerdo al identificador 
+	 * Conecta y envia la consulta de acuerdo al identificador 
 	 * (id) que se haya recibido en la peticion desde el navegador.
 	 * @param id el identificador del registro en la BD
 	 * @return un objeto ResponseEntity que envuelve los registros 
@@ -57,7 +57,7 @@ public abstract class Api<TModel, Tid> {
 		HttpStatus httpStatus;
 		Map<String, Object> metadataResMap = new HashMap<String, Object>();				
 
-		metadataResMap.put(this.nomTipoConsulta, this.etiLectura);		
+		metadataResMap.put(this.nomTipoConsulta , this.etiLectura);		
 		
 		try {
 

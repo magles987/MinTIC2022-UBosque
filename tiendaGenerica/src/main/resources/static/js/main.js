@@ -23,12 +23,11 @@ $(document).ready(function(){
 
     //solo en pruebas:
     AuthVista.activarVista();  
-    UsuarioVista.activarVista();   
-    //ClienteVista.activarVista(); 
-    //ProveedorVista.activarVista();  
-    //VentaVista.activarVista();   
-    //ProductoVista.activarVista();
-    //ReporteVista.activarVista();
+    UsuarioVista.activarVista();
+    ClienteVista.activarVista(); 
+//    ProveedorVista.activarVista();  
+//    VentaVista.activarVista();   
+//    ProductoVista.activarVista();
 });
 
 //================================================
