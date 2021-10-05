@@ -21,14 +21,20 @@
 </head>
 
 <body>
+
+	<div class="cabecera">
+		<h1>TIENDA GENERICA</h1>
+	</div>
+
 	<div id="bodyApp">
 		<nav>
-			<a for="vistaUsuario" href="#">Usuarios</a>
-			<a for="vistaCliente" href="#">Clientes</a>
-			<a for="vistaProveedor" href="#">Proveedores</a>
-			<a for="vistaVenta" href="#">Ventas</a>
-			<a for="vistaReporte" href="#">Reportes</a>
-			<a for="vistaAuth" href="#">Logout</a>
+			<a for="vistaUsuario" href="#">Usuario</a>
+			<a for="vistaCliente" href="#">Cliente</a>
+			<a for="vistaProveedor" href="#">Proveedor</a>
+			<a for="vistaProducto" href="#">Producto</a>
+			<a for="vistaVenta" href="#">Venta</a>
+			<a for="vistaReporte" href="#">Reporte</a>
+			<a for="vistaAuth" href="#">X</a>
 		</nav>
 	
 		<div id="bodyVistas">
@@ -69,7 +75,7 @@
 			<div id="vistaUsuario" class="vista">
 				<form id="formUsuario">
 					<fieldset>
-						<legend>Administrar usuarios</legend>
+						<legend>Administrar usuario</legend>
 						<div class="campo">
 							<label for="cedula">Cédula*:</label>
 							<input type="text" name="cedula" id="usuarioCedula" required autocomplete="off">
@@ -118,7 +124,7 @@
 			<div id="vistaCliente" class="vista">
 				<form id="formCliente">
 					<fieldset>
-						<legend>Administrar Clientes</legend>
+						<legend>Administrar Cliente</legend>
 	
 						<div class="campo">
 							<label for="cedula">Cédula*:</label>
@@ -168,7 +174,7 @@
 			<div id="vistaProveedor" class="vista">
 				<form id="formProveedor">
 					<fieldset>
-						<legend>Administrar Proveedores</legend>
+						<legend>Administrar Proveedor</legend>
 	
 						<div class="campo">
 							<label for="nit">NIT*:</label>
@@ -218,7 +224,7 @@
 			<div id="vistaProducto" class="vista">
 				<form id="formProducto">
 					<fieldset>
-						<legend>Administrar Productos</legend>
+						<legend>Administrar Producto</legend>
 	<!--
 												<div class="campo">
 							<label for="codigo">Codigo</label>
@@ -290,7 +296,7 @@
 			<div id="vistaVenta" class="vista">
 				<form id="formVenta">
 					<fieldset>
-						<legend>Administrar ventas</legend>
+						<legend>Administrar venta</legend>
 	
 						<div for="ventaCliente" style="display: inline;">
 							<label for="cedula">Cédula</label>
@@ -536,6 +542,19 @@
 			</div>
 		</div>		
 	</div>
+
+	<div class="pie">
+<!-- 
+		<div class="creadores">
+			<h6>Creado por:</h6>
+			<ul>
+				<li>Magner</li>
+				<li>Lina</li>
+			</ul>
+
+		</div>
+		 -->
+	</div>	
 
 </body>
 
