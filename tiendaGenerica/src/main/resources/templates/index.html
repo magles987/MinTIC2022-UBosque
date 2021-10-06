@@ -298,7 +298,7 @@
 					<fieldset>
 						<legend>Administrar venta</legend>
 	
-						<div for="ventaCliente" style="display: inline;">
+						<div for="ventaCliente" class="ventaCliente">
 							<label for="cedula">Cédula</label>
 							<input type="text" name="cedula" id="ventaCedulaCliente" required autocomplete="off">
 							<span id="errorVentaCedulaCliente"></span>
@@ -308,9 +308,11 @@
 							<label for="nombre">Cliente</label>
 							<input type="text" name="nombre" id="ventaNombreCliente" required autocomplete="off" disabled>	
 						</div>
-	
-						<label for="consec">Consec.:</label>
-						<input type="text" name="consec" id="ventaConsec" required autocomplete="off" disabled>
+						
+						<div class="ventaCodigo">
+							<label for="consec">Consec.:</label>
+							<input type="text" name="consec" id="ventaConsec" required autocomplete="off" disabled>
+						</div>
 	
 						<table>
 	
@@ -411,8 +413,10 @@
 	
 						<div class="bannerInfo" id="infoVenta"></div>
 	
-						<button id="btnVentaConfirmar" value="POST:guardar" type="button">Confirmar</button>					
-	
+						<div class="panelBotones">
+							<button id="btnVentaConfirmar" value="POST:guardar" type="button">Confirmar</button>		
+						</div>
+										
 					</fieldset>
 				</form>
 			</div>
@@ -421,123 +425,127 @@
 	
 			<div id="vistaReporte" class="vista">
 	
-				<nav>
-					<a for="vistaListarUsuarios" href="#">Listado de Usuarios</a>
-					<a for="vistaListarClientes" href="#">Listado de Clientes</a>
-					<a for="vistaListarVentasClientes" href="#">Ventas por Cliente</a>
-					<a for="vistaListarProveedores" href="#">Listado de Proveedores</a>
-					<a for="vistaListarProductos" href="#">Listado de Productos</a>
-					<a for="vistaListarVentas" href="#">Listado de Ventas</a>				
-				</nav>
-	
-				<div id="vistaListarUsuarios">
-					<h3>Listado de Usuarios</h3>
-					<table>
-						<thead>
-							<tr>
-								<th>Cedula</th>
-								<th>Nombre</th>
-								<th>Correo Electrónico</th>
-								<th>Usuario</th>
-								<th>Password</th>
-							</tr>
-						</thead>
-						<tbody>
-	
-						</tbody>
-					</table>
-				</div>
-	
-				<div id="vistaListarClientes">
-					<h3>Listado de Clientes</h3>
-					<table>
-						<thead>
-							<tr>
-								<th>Cedula</th>
-								<th>Nombre</th>
-								<th>Correo Electrónico</th>
-								<th>Dirección</th>
-								<th>Télefono</th>
-							</tr>
-						</thead>
-						<tbody>
-	
-						</tbody>
-					</table>
-				</div>
-			
-				<div id="vistaListarVentasClientes">
-					<h3>Total de ventas por cliente</h3>
-					<table>
-						<thead>
-							<tr>
+				<fieldset>
+					<legend>Reporte</legend>
+
+					<nav>
+						<a for="vistaListarUsuarios" href="#">Listado de Usuarios</a>
+						<a for="vistaListarClientes" href="#">Listado de Clientes</a>
+						<a for="vistaListarVentasClientes" href="#">Ventas por Cliente</a>
+						<a for="vistaListarProveedores" href="#">Listado de Proveedores</a>
+						<a for="vistaListarProductos" href="#">Listado de Productos</a>
+						<a for="vistaListarVentas" href="#">Listado de Ventas</a>				
+					</nav>
+		
+					<div id="vistaListarUsuarios">
+						<h3>Listado de Usuarios</h3>
+						<table>
+							<thead>
 								<tr>
 									<th>Cedula</th>
 									<th>Nombre</th>
-									<th>Valor Total Ventas</th>
+									<th>Correo Electrónico</th>
+									<th>Usuario</th>
+									<th>Password</th>
 								</tr>
-							</tr>
-						</thead>
-						<tbody>
-	
-						</tbody>
-					</table>
-				</div>		
-	
-				<div id="vistaListarProveedores">
-					<h3>Listado de Proveedores</h3>
-					<table>
-						<thead>
-							<tr>
-								<th>NIT</th>
-								<th>Nombre</th>
-								<th>Ciudad</th>
-								<th>Dirección</th>
-								<th>Télefono</th>
-							</tr>
-						</thead>
-						<tbody>
-	
-						</tbody>
-					</table>
-				</div>	
-	
-				<div id="vistaListarProductos">
-					<h3>Listado de Productos</h3>
-					<table>
-						<thead>
-							<tr>
-								<th>Codigo</th>
-								<th>Nombre</th>
-								<th>Precio compra</th>
-								<th>Iva compra</th>
-								<th>Precio venta</th>
-							</tr>
-						</thead>
-						<tbody>
-	
-						</tbody>
-					</table>
-				</div>		
+							</thead>
+							<tbody>
+		
+							</tbody>
+						</table>
+					</div>
+		
+					<div id="vistaListarClientes">
+						<h3>Listado de Clientes</h3>
+						<table>
+							<thead>
+								<tr>
+									<th>Cedula</th>
+									<th>Nombre</th>
+									<th>Correo Electrónico</th>
+									<th>Dirección</th>
+									<th>Télefono</th>
+								</tr>
+							</thead>
+							<tbody>
+		
+							</tbody>
+						</table>
+					</div>
 				
-				<div id="vistaListarVentas">
-					<h3>Listado de Ventas</h3>
-					<table>
-						<thead>
-							<tr>
-								<th>Codigo</th>
-								<th>Valor venta</th>
-								<th>Iva venta</th>
-								<th>Total venta</th>
-							</tr>
-						</thead>
-						<tbody>
-	
-						</tbody>
-					</table>
-				</div>				
-				
-				<div class="bannerInfo" id="infoReporte"></div>			
+					<div id="vistaListarVentasClientes">
+						<h3>Total de ventas por cliente</h3>
+						<table>
+							<thead>
+								<tr>
+									<tr>
+										<th>Cedula</th>
+										<th>Nombre</th>
+										<th>Valor Total Ventas</th>
+									</tr>
+								</tr>
+							</thead>
+							<tbody>
+		
+							</tbody>
+						</table>
+					</div>		
+		
+					<div id="vistaListarProveedores">
+						<h3>Listado de Proveedores</h3>
+						<table>
+							<thead>
+								<tr>
+									<th>NIT</th>
+									<th>Nombre</th>
+									<th>Ciudad</th>
+									<th>Dirección</th>
+									<th>Télefono</th>
+								</tr>
+							</thead>
+							<tbody>
+		
+							</tbody>
+						</table>
+					</div>	
+		
+					<div id="vistaListarProductos">
+						<h3>Listado de Productos</h3>
+						<table>
+							<thead>
+								<tr>
+									<th>Codigo</th>
+									<th>Nombre</th>
+									<th>Precio compra</th>
+									<th>Iva compra</th>
+									<th>Precio venta</th>
+								</tr>
+							</thead>
+							<tbody>
+		
+							</tbody>
+						</table>
+					</div>		
+					
+					<div id="vistaListarVentas">
+						<h3>Listado de Ventas</h3>
+						<table>
+							<thead>
+								<tr>
+									<th>Codigo</th>
+									<th>Valor venta</th>
+									<th>Iva venta</th>
+									<th>Total venta</th>
+								</tr>
+							</thead>
+							<tbody>
+		
+							</tbody>
+						</table>
+					</div>				
+					
+					<div class="bannerInfo" id="infoReporte"></div>							
+				</fieldset>	
 	
 			</div>
 		</div>		
