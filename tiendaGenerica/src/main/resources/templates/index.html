@@ -299,14 +299,15 @@
 						<legend>Administrar venta</legend>
 	
 						<div for="ventaCliente" class="ventaCliente">
-							<label for="cedula">Cédula</label>
-							<input type="text" name="cedula" id="ventaCedulaCliente" required autocomplete="off">
-							<span id="errorVentaCedulaCliente"></span>
-		
+							<label for="cedula">Cédula:</label>
+							<input type="text" name="cedula" id="ventaCedulaCliente" required autocomplete="off">		
+
 							<button value="GET:leerPorId" type="button">Consultar</button>
-		
-							<label for="nombre">Cliente</label>
+									
+							<label for="nombre">Cliente:</label>
 							<input type="text" name="nombre" id="ventaNombreCliente" required autocomplete="off" disabled>	
+							
+							<span id="errorVentaCedulaCliente"></span>
 						</div>
 						
 						<div class="ventaCodigo">
@@ -328,9 +329,9 @@
 							<tbody>
 								<tr for="ventaProducto">
 									<td>
-										<input type="text" name="codigo" required autocomplete="off">
-										<span for="codigo"></span>
+										<input type="text" name="codigo" required autocomplete="off">										
 										<button value="GET:leerPorId" type="button">Consultar</button>
+										<span for="codigo"></span>
 									</td>
 		
 									<td>
@@ -342,15 +343,15 @@
 									</td>
 		
 									<td>
-										<input type="text" name="valorTotal" required autocomplete="off" disabled>
+										<span class="simboloMoneda">$ </span><input type="text" name="valorTotal" required autocomplete="off" disabled>
 									</td>
 								</tr>
 		
 								<tr for="ventaProducto">
 									<td>
-										<input type="text" name="codigo" required autocomplete="off">
-										<span for="codigo"></span>
+										<input type="text" name="codigo" required autocomplete="off">										
 										<button value="GET:leerPorId" type="button">Consultar</button>
+										<span for="codigo"></span>
 									</td>
 		
 									<td>
@@ -362,15 +363,15 @@
 									</td>
 		
 									<td>
-										<input type="text" name="valorTotal" required autocomplete="off" disabled>
+										<span class="simboloMoneda">$ </span><input type="text" name="valorTotal" required autocomplete="off" disabled>
 									</td>
 								</tr>
 		
 								<tr for="ventaProducto">
 									<td>
-										<input type="text" name="codigo" required autocomplete="off">
-										<span for="codigo"></span>
+										<input type="text" name="codigo" required autocomplete="off">										
 										<button value="GET:leerPorId" type="button">Consultar</button>
+										<span for="codigo"></span>
 									</td>
 		
 									<td>
@@ -378,11 +379,11 @@
 									</td>
 		
 									<td>
-										<input type="number" name="cantidadProducto" required autocomplete="off" disabled>
+										<input type="text" name="cantidadProducto" required autocomplete="off" disabled>
 									</td>
 		
 									<td>
-										<input type="text" name="valorTotal" required autocomplete="off" disabled>
+										<span class="simboloMoneda">$ </span><input type="text" name="valorTotal" required autocomplete="off" disabled>
 									</td>
 								</tr>
 							</tbody>
@@ -390,22 +391,19 @@
 							<tfoot>
 								<tr>
 									<td></td>
-									<td></td>
-									<td><label>Total Venta</label></td>
-									<td><input type="text" name="valorVenta" id="ventaValorVenta" required autocomplete="off" disabled>	</td>
+									<td colspan="2"><label>Total Venta</label></td>
+									<td><span class="simboloMoneda">$ </span><input type="text" name="valorVenta" id="ventaValorVenta" required autocomplete="off" disabled>	</td>
 																
 								</tr>
 								<tr>
 									<td></td>
-									<td></td>								
-									<td><label>IVA Venta</label></td>
-									<td><input type="text" name="ivaVenta" id="ventaIvaVenta" required autocomplete="off" disabled>	</td>															
+									<td colspan="2"><label>IVA Venta</label></td>							
+									<td><span class="simboloMoneda">$ </span><input type="text" name="ivaVenta" id="ventaIvaVenta" required autocomplete="off" disabled>	</td>															
 								</tr>		
 								<tr>
 									<td></td>
-									<td></td>									
-									<td><label>Total con IVA</label></td>
-									<td><input type="text" name="totalVenta" id="ventaTotalVenta" required autocomplete="off" disabled></td>																
+									<td colspan="2"><label>Total con IVA</label></td>
+									<td><span class="simboloMoneda">$ </span><input type="text" name="totalVenta" id="ventaTotalVenta" required autocomplete="off" disabled></td>																
 								</tr>													
 							</tfoot>
 	

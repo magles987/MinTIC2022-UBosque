@@ -38,7 +38,7 @@ html{
     
     margin-left: 1%;
     margin-right: 1%;
-    
+
     /* background-image: url('../img/darkness.png');
     background-repeat: repeat; */
 
@@ -160,7 +160,9 @@ html{
 }
 
 #bodyApp > nav a:hover{
-    border-color: rgba(255,255,255,0.8);
+    border-color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.4);
+    -webkit-text-stroke: 1px rgba(32,32,255,0.8);
 }
 
 .vista{
@@ -175,7 +177,10 @@ html{
     margin-left: 1%;
     margin-right: 1%;
 
-    padding: 5%;
+    padding-top: 2.5%;
+    padding-bottom: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
 
     background-color: rgba(5, 5, 5, 0.85);
 
@@ -243,7 +248,7 @@ html{
     border-radius: 10px;
 }
 
-.vista .campo span[id]{
+.vista span[id^="error"]{
     width: 100%;
     display: block;
     font-size: 0.8em;
@@ -251,6 +256,9 @@ html{
     color: rgba(255,0,0,0.8);
     text-align: right;
     clear: both;
+
+    padding-top: 0.5%;
+    margin-left: -11%;
     
 }
 
@@ -303,9 +311,24 @@ html{
     background: radial-gradient(circle, rgba(32,32,32,1), rgba(16,16,16,1), rgba(0,0,0,1))
 }
 
+.vista .panelBotones button:disabled{
+    border-color: rgba(32,32,32,0.5);
+    box-shadow: 0 0 2px rgba(128,128,128, 0.4);
+    background: radial-gradient(circle, rgba(32,32,32,1), rgba(16,16,16,1), rgba(0,0,0,1))
+}
+
 .vista .bannerInfo{
     max-height: 32px;
     font-size: 0.75em;
+    text-align: center;
+}
+
+.infoLVerde{
+    color: greenyellow;
+}
+
+.infoLRoja{
+    color: red;
 }
 /* =================================================== */
 /*Responsivo */
