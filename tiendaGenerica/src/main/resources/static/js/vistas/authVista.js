@@ -1,5 +1,5 @@
 import * as UsuarioCtrl from "../api/usuarioApi.js";
-import { actualizarVista, selNavPrincipal } from "../main.js";
+import { actualizarVista, selNavPrincipal, infoColorClass } from "../main.js";
 //====================================================    
 //selectores de campos del form		
 
@@ -122,6 +122,7 @@ function setTagsError(errorModelo = UsuarioCtrl.getModelo()) {
 		}
 		
 		$(selInfoForm).text(metadatos.msn);
+		infoColorClass(selInfoForm, false);
 
 	});
  }
@@ -139,7 +140,7 @@ export function activarVista() {
 	cedulaUsuarioActual = -1;
 
 	//CERRAR NAVEGACION PRINCIPAL ---(descomentar en version beta)--
-	//$(selNavPrincipal).hide();
+	$(selNavPrincipal).hide();
 
 }
 
