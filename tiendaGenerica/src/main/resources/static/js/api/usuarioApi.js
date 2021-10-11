@@ -4,7 +4,7 @@ var nomModel_s = "usuario";
 /**Nombre del modelo o su correspondiente entidad en Plural*/
 var nomModel_p = "usuarios"
 
-var urlBase = `/${nomModel_s}/`;
+var urlBase = `${nomModel_s}/`;
 
 /** 
  * @return un modelo modelo vacio para usarlo como instancia 
