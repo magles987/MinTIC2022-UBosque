@@ -8,7 +8,7 @@ import * as ReporteVista from "./vistas/reporteVista.js";
 
 //================================================
 /**selector navegacion principal */
-export var selNavPrincipal = `body > nav a`;
+export var selNavPrincipal = `#bodyApp > nav a`;
 
 //================================================
 $(document).ready(function(){
@@ -19,15 +19,17 @@ $(document).ready(function(){
     });
 
     //actualiza a la vista incial al momento de iniciar la aplicacion
-    //actualizarVista(AuthVista.selIdVista);
+    actualizarVista(AuthVista.selIdVista);
 
     //solo en pruebas:
-    AuthVista.activarVista();  
-    UsuarioVista.activarVista();
-    ClienteVista.activarVista(); 
-//    ProveedorVista.activarVista();  
-//    VentaVista.activarVista();   
-//    ProductoVista.activarVista();
+
+     AuthVista.activarVista();  
+     UsuarioVista.activarVista();   
+     ClienteVista.activarVista(); 
+    // ProveedorVista.activarVista();  
+    // VentaVista.activarVista();   
+    // ProductoVista.activarVista();
+    ReporteVista.activarVista();
 });
 
 //================================================
@@ -105,4 +107,18 @@ function cerrarVistas() {
 
     ReporteVista.desactivarVista();
     $(ReporteVista.selIdVista).hide();       
+}
+
+
+/**
+ * clases para color de informacion
+ */
+ export function infoColorClass(selInfoForm, isValida) {
+	if (isValida) {
+		$(selInfoForm).addClass("infoLVerde");
+		$(selInfoForm).removeClass("infoLRoja");
+	} else {
+		$(selInfoForm).addClass("infoLRoja");
+		$(selInfoForm).removeClass("infoLVerde");
+	}
 }

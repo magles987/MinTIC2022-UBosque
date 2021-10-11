@@ -43,7 +43,7 @@ function valCedula(val) {
 	}
 
 	if (isNaN(parseInt(val)) || parseInt(val) <= 0) {
-		return "No es una cedula valida";
+		return "No es una cédula valida";
 	}
 
 	return;

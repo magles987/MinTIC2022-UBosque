@@ -1,5 +1,6 @@
 import * as UsuarioCtrl from "../api/usuarioApi.js";
 
+import { infoColorClass } from "../main.js";
 //====================================================    
 //selectores de campos del form		
 
@@ -132,6 +133,7 @@ function clickControllers(e){
 					limpiarCampos();
 					limpiarErrores();
 					$(selInfoForm).text(metadatos.msn);
+					infoColorClass(selInfoForm, true);
 
 					break;
 			
@@ -169,6 +171,7 @@ function clickControllers(e){
 			}
 			
 			$(selInfoForm).text(metadatos.msn);
+			infoColorClass(selInfoForm, false);
 
 		});
 }
