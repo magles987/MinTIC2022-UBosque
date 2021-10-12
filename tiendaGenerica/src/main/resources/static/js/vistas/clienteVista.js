@@ -1,26 +1,27 @@
 import * as ClienteCtrl from "../api/clienteApi.js";
 
+import { infoColorClass } from "../main.js";
 //====================================================    
 //selectores de campos del form		
 
-let selForm = "#formCliente";
+let selForm = "#formCliente"; 
 
 //selector de campos
 let selCampoCedula = "#clienteCedula";
 let selCampoNombre = "#clienteNombre";
-let selCampoDireccion = "#clienteDireccion";
-let selCampoTelefono = "#clienteTelefono";
 let selCampoEmail = "#clienteEmail";
+let selCampoDirecion = "#clienteDireccion";
+let selCampoTelefono = "#clienteTelefono";
+
 
 //selector de errores
 let selErrorCedula = "#errorClienteCedula";
 let selErrorNombre = "#errorClienteNombre";
+let selErrorEmail = "#errorClienteEmail";
 let selErrorDireccion = "#errorClienteDireccion";
 let selErrorTelefono = "#errorClienteTelefono";
-let selErrorEmail = "#errorClienteEmail";
 
-
-//Selector informativo general para el form
+//selector informativo general para el form
 let selInfoForm = "#infoCliente";
 
 //selectores de eventos en general
@@ -28,83 +29,82 @@ let selEventBotones = `${selForm} button`;
 
 //====================================================  
 /** 
- * Limpia los campos del formulario 
+ * limpia los campos del formulario 
  * y devuelve un modelo vacio
 */
-function limpiarCampos() {
-
+function limpiarCampos(){
+	
 	$(selCampoCedula).val("");
 	$(selCampoNombre).val("");
-	$(selCampoDireccion).val("");
-	$(selCampoTelefono).val("");
 	$(selCampoEmail).val("");
+	$(selCampoDirecion).val("");
+	$(selCampoTelefono).val("");
 	
 	limpiarErrores();
 
-	return;
+	return ;
 }
 
 /** 
- * Limpia las etiquetas de error 
+ * limpia las etiquetas de error 
  * del formulario
-*/
-function limpiarErrores() {
+*/	
+function limpiarErrores(){
 
 	$(selErrorCedula).text("");
 	$(selErrorNombre).text("");
+	$(selErrorEmail).text("");
 	$(selErrorDireccion).text("");
 	$(selErrorTelefono).text("");
-	$(selErrorEmail).text("");	
+
 	$(selInfoForm).text("");
-
-
-	return;
-}
+	return ;
+}	
 
 //====================================================
 /** 
- * Permite acceder o asignar valores a 
+ * permite acceder o asignar valores a 
  * los campos del formulario
- * @param entidad Recibe un objeto con los valores
+ * @param entidad recibe un objeto con los valores
  * a cargar en los campos del formulario o un null.
- * Si este objeto es null se asume que se 
+ * si este objeto es null se asume que se 
  * quiere devolver un objeto que contenga cada 
  * valor de cada campo del formulario
-*/
-function accederCampos(entidad = ClienteCtrl.getModelo()) {
-
-	//Evaluar el contenido de entidad
+*/	
+function accederCampos(entidad = ClienteCtrl.getModelo()){
+	
+	//evaluar el contenido de entidad
 	if (entidad == null || typeof (entidad) != "object") {
 
 		entidad = {};
 
 		entidad.cedula = $(selCampoCedula).val().trim();
 		entidad.nombre = $(selCampoNombre).val().trim();
-		entidad.direccion = $(selCampoDireccion).val().trim();
-		entidad.telefono = $(selCampoTelefono).val().trim();
 		entidad.email = $(selCampoEmail).val().trim();
+		entidad.direccion = $(selCampoDirecion).val().trim();
+		entidad.telefono = $(selCampoTelefono).val().trim();
 
 	} else {
 
 		$(selCampoCedula).val(entidad.cedula);
 		$(selCampoNombre).val(entidad.nombre);
-		$(selCampoDireccion).val(entidad.direccion);
-		$(selCampoTelefono).val(entidad.telefono);
 		$(selCampoEmail).val(entidad.email);
+		$(selCampoDirecion).val(entidad.direccion);
+		$(selCampoTelefono).val(entidad.telefono);
 	}
 	return entidad;
 }
 
 /**
- * Agrega los mensajes de error de validación 
+ * agrega los mensajes de error de validacion 
  * que se tengan diponibles
  */
 function setTagsError(errorModelo = ClienteCtrl.getModelo()) {
 	$(selErrorCedula).text(errorModelo.cedula);
 	$(selErrorNombre).text(errorModelo.nombre);
+	$(selErrorEmail).text(errorModelo.email);
 	$(selErrorDireccion).text(errorModelo.direccion);
 	$(selErrorTelefono).text(errorModelo.telefono);
-	$(selErrorEmail).text(errorModelo.email);
 }
 
 //====================================================       
@@ -114,10 +114,10 @@ function setTagsError(errorModelo = ClienteCtrl.getModelo()) {
  * @param e el evento con el que se disparo la ejecucion
  * */
 function clickControllers(e) {
-	//Desactivar el evento
+	//desactivar el evento
 	e.preventDefault();
 
-	//Se inicializa solo para tipar
+	//se inicializa solo para tipar
 	let entidad = ClienteCtrl.getModelo();
 	entidad = accederCampos(null);
 
@@ -133,23 +133,28 @@ function clickControllers(e) {
 					limpiarCampos();
 					limpiarErrores();
 					$(selInfoForm).text(metadatos.msn);
+					infoColorClass(selInfoForm, true);
 
 					break;
 
 				case "lectura":
+
 					//determinar si la consulta por cedula es vacia
 					if (metadatos.clientes.length == 0) {
-						metadatos.errorValidacion = ClienteCtrl.getModelo();
-						metadatos.errorValidacion.cedula = "No existe";
+						metadatos.errorValidacion = ClienteCtrl.getModelo()
+						metadatos.errorValidacion.cedula = "no existe";
+						limpiarCampos();
 						return Promise.reject(metadatos);
 					}
 
 					accederCampos(metadatos.clientes[0]);
+					limpiarErrores()
 					break;
 
 				default:
 					break;
 			}
+
 		})
 		.catch((eMt) => {
 			let metadatos = ClienteCtrl.getMetadatos();
@@ -165,26 +170,28 @@ function clickControllers(e) {
 			}
 
 			$(selInfoForm).text(metadatos.msn);
+			infoColorClass(selInfoForm, false);
 
 		});
-
-}
+ }
 
 //====================================================  
-//Estados de la vista
+//estados de la vista
 
 export var selIdVista = "#vistaCliente";
 
 export function activarVista() {
-	//Activar TODOS los eventos que se usen para la vista
+	//activar TODOS los eventos que se usen para la vista
 	$(selEventBotones).click(clickControllers);
 }
 
 export function desactivarVista() {
-	//Desactivar TODOS los eventos que se usen para la vista
+	//desactivar TODOS los eventos que se usen para la vista
 	$(selEventBotones).off();
-	//Limpiar todos los campos
+	//limpiar todos los campos
 	limpiarCampos();
-	//Limpiar variables de modulo 
+	//limpiar variables de modulo 
 
 }
+
+>>>>>>> refs/heads/magner

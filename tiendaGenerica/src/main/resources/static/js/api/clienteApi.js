@@ -3,7 +3,7 @@ var nomModel_s = "cliente";
 /**Nombre del modelo o su correspondiente entidad en Plural*/
 var nomModel_p = "clientes"
 
-var urlBase = `/${nomModel_s}/`;
+var urlBase = `${nomModel_s}/`;
 
 /** 
  * @return un modelo modelo vacio para usarlo como instancia 
@@ -13,9 +13,11 @@ export function getModelo(){
 	return {
 		cedula :"",
 		nombre :"",
-		direccion :"",
-		telefono :"",
 		email:"",
+		direccion : "",
+		telefono : "",
+		
+		ventas:[] //referencia virtual
 	};
 }
 
@@ -34,25 +36,34 @@ export function getMetadatos() {
 }
 
 // ==========================================================
-//Validaciones locales por cada campo
+//validaciones locales por cada campo
 
 function valCedula(val) {
-	
+
 	if (!val || val == "") {
-		return "No puede estar vacio";
+		return "no puede estar vacio";
 	}
 
 	if (isNaN(parseInt(val)) || parseInt(val) <= 0) {
-		return "No es una cedula valida";
+		return "no es una cedula valida";
+	}
+	
+	return;
+}
+
+function valNombre(val) {
+
+	if (!val || val == "" || val == null) {
+		return "no puede estar vacio";
 	}
 
 	return;
 }
 
-function valNombre(val) {
-	
+function valEmail(val) {
+
 	if (!val || val == "" || val == null) {
-		return "No puede estar vacio";
+		return "no puede estar vacio";
 	}
 
 	return;
@@ -61,7 +72,7 @@ function valNombre(val) {
 function valDireccion(val) {
 
 	if (!val || val == "" || val == null) {
-		return "No puede estar vacio.";
+		return "no puede estar vacio";
 	}
 
 	return;
@@ -70,102 +81,95 @@ function valDireccion(val) {
 function valTelefono(val) {
 
 	if (!val || val == "" || val == null) {
-		return "No puede estar vacio.";
+		return "no puede estar vacio";
 	}
-	
+
 	if (isNaN(parseInt(val)) || parseInt(val) <= 0) {
-		return "No es un teléfono valido";
+		return "no es una cedula valida";
 	}
 
 	return;
 }
-
-function valEmail(val) {
-	
-	if (!val || val == "" || val == null) {
-		return "No puede estar vacio.";
-	}
-
-	return;
-}
-
 
 /**
- * Verifica si se tiene acumulado algún error de validación local
+ * verifica si se tiene acumulado algun error de validacion local
  * @return un true si tiene errores acumulados o un false si no los tiene
  */
 function comprobarErrorModelo(em = getModelo()) {
 	return (em.cedula 
 			|| em.nombre
+			|| em.email
 			|| em.direccion
 			|| em.telefono
-			|| em.email
 			);
 }
 
 // ==========================================================
-
 /** 
- * Permite acceder o asignar valores a 
+ * permite acceder o asignar valores a 
  * los campos del formulario
  * @param paramSolicitud string que contiene los 
- * parametros para configurar la petición, cada 
+ * parametros para configurar la peticion, cada 
  * parametro esta separado por caracter   ":"  
  * ejemplo:  "GET:listar" 
  * donde el "GET" (mayuscula) indica el metodo 
  * a usar y el   "listar" es el recurso a pedirle 
  * al servidor
  * @param entidad recibe un objeto con los datos 
- * resgitrados por el usuario de la aplicación 
+ * resgitrados por el usuario de la aplicacion 
  * y los valida.
- * @return un modelo con los mensajes de error de 
- * validación si no hay errores devuelve null
+ * @return una promesa de la peticion al servidor 
+ * con los correspondientes metadatos (ya sean de 
+ * respuesta satisfactoria o de error)
 */
 export function ejecutarController(paramSolicitud, entidad = getModelo()) {
-	
-	//Metadatos a devolver (se asigna para tipar)
+
+	//metadatos a devolver (se asigna para tipar)
 	let metadatos = getMetadatos();
 
-	//Extracción de solicitud
+	//promesa a devolver (se asigna para tipar)
+	let PromesaSolicitud = Promise.resolve(metadatos);
+
+	//extraccion de solicitud
 	let metodo = paramSolicitud.split(":")[0];
 	let solicitud = paramSolicitud.split(":")[1];	
 
-	//Contendra posibles errores de validación con 
+	//contendra posibles errores de validacion con 
 	//sus correspondientes mensajes para cada campo
 	let errorModelo = getModelo();
 	errorModelo = {};
 
-	//Asignación del entidad a envíar (si existe)
+	//asignacion del entidad a enviar (si existe)
 	metadatos[nomModel_p] = [entidad]; 
 
-	//Preconfiguración de url de solicitud
+	//preconfiguracion de url de solicitud
 	let url = urlBase + solicitud;
 	
-	//Configuración inicial de petición para el fetch
+	//configuracion inicial de peticion para el fetch
 	let confingPeticion = {};
 	confingPeticion.method = metodo;
 
 	switch (paramSolicitud) {
 		
+		case "GET:listar":
+			//no se necesitan parametros
+			break;
+
 		case "GET:leerPorId":
 			//ejecutar validadores para este caso
 			errorModelo.cedula = valCedula(entidad.cedula);
 
-			//construcción de petición
+			//construccion de peticion
 			url  = `${url}?cedula=${entidad.cedula}`;			
-			break;
-			
-		case "GET:listar":			
 			break;
 	
 		case "POST:guardar":
 			//ejecutar validadores para este caso
 			errorModelo.cedula = valCedula(entidad.cedula);	
-			errorModelo.nombre = valNombre(entidad.nombre);
+			errorModelo.nombre = valNombre(entidad.nombre);	
+			errorModelo.email = valEmail(entidad.email);		
 			errorModelo.direccion = valDireccion(entidad.direccion);	
 			errorModelo.telefono = valTelefono(entidad.telefono);	
-			errorModelo.email = valEmail(entidad.email);		
-				
 
 			confingPeticion.body = JSON.stringify(entidad);
 			confingPeticion.headers = {'Content-Type': 'application/json;charset=UTF-8'};             
@@ -176,9 +180,9 @@ export function ejecutarController(paramSolicitud, entidad = getModelo()) {
 			//ejecutar validadores para este caso
 			errorModelo.cedula = valCedula(entidad.cedula);	
 			errorModelo.nombre = valNombre(entidad.nombre);	
+			errorModelo.email = valEmail(entidad.email);		
 			errorModelo.direccion = valDireccion(entidad.direccion);	
 			errorModelo.telefono = valTelefono(entidad.telefono);	
-			errorModelo.email = valEmail(entidad.email);
 
 			confingPeticion.body = JSON.stringify(entidad);
 			confingPeticion.headers = {'Content-Type': 'application/json;charset=UTF-8'};     
@@ -198,13 +202,13 @@ export function ejecutarController(paramSolicitud, entidad = getModelo()) {
 
 	let statusActual = 0;
 
-	return Promise.resolve()
-	//validación local
+	return PromesaSolicitud
+	//validacion local
 	.then(()=>{
-		//comprobar errorres de validación
+		//comprobar errorres de validacion
 		if (comprobarErrorModelo(errorModelo)) {
 			metadatos.errorValidacion = errorModelo;
-			metadatos.msn = "Se detectaron errores";
+			metadatos.msn = "se detectaron errores";
 			return Promise.reject(metadatos);
 		}else{
 			return Promise.resolve();
@@ -227,6 +231,7 @@ export function ejecutarController(paramSolicitud, entidad = getModelo()) {
 		//verificar correcto
 		if (statusActual >= 200 && statusActual < 300) {
 
+		//convertir (si solo se recibio un entidad) a un array de entidads
 		metadatos[nomModel_p] = Array.isArray(metadatos[nomModel_p]) == true ?
 								metadatos[nomModel_p] : 
 								(metadatos[nomModel_p] && metadatos[nomModel_p] != null) ?
@@ -249,4 +254,6 @@ export function ejecutarController(paramSolicitud, entidad = getModelo()) {
 		}
 	})
 
-};
+} ;
+
+
