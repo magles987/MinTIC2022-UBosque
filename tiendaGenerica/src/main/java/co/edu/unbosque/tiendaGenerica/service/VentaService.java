@@ -20,6 +20,4 @@ public class VentaService extends MyService<Venta, Long> {
 		this.dao = dao;
 	}
 
-	
-
 }

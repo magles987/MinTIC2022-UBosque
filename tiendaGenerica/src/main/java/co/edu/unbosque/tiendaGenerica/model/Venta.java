@@ -23,9 +23,9 @@ public class Venta implements Serializable{
 	@Column(name="codigo_venta")	
 	private long codigo;	
 		
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "cedula_cliente", nullable = false)
-//	private Cliente cliente;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cedula_cliente", nullable = false)
+	private Cliente cliente;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cedula_usuario", nullable = false)
@@ -52,14 +52,14 @@ public class Venta implements Serializable{
 		this.codigo = codigo;
 	}
 
-//	@JsonBackReference(value="cliente-venta") //--evita recusrsividad infinita
-//	public Cliente getCliente() {
-//		return cliente;
-//	}
+	@JsonBackReference(value="cliente-venta") //--evita recusrsividad infinita
+	public Cliente getCliente() {
+		return cliente;
+	}
 
-//	public void setCliente(Cliente cliente) {
-//		this.cliente = cliente;
-//	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
 	@JsonBackReference(value="usuario-venta") //--evita recusrsividad infinita
 	public Usuario getUsuario() {
@@ -94,14 +94,43 @@ public class Venta implements Serializable{
 		this.valorVenta = valorVenta;
 	}
 
-//	@JsonManagedReference(value="venta-detalleVenta") //evita bucle de JSON infinito
-//	public List<DetalleVenta> getDetalleVentas() {
-//		return detalleVentas;
-//	}
+	@JsonManagedReference(value="venta-detalleVenta") //evita bucle de JSON infinito
+	public List<DetalleVenta> getDetalleVentas() {
+		return detalleVentas;
+	}
 
-//	public void setDetalleVentas(List<DetalleVenta> detalleVentas) {
-//		this.detalleVentas = detalleVentas;
-//	}
+	public void setDetalleVentas(List<DetalleVenta> detalleVentas) {
+		this.detalleVentas = detalleVentas;
+	}
+
+	@Override
+	public String toString() {
+		return "Venta [codigo=" + codigo + ", cliente=" + cliente + ", usuario=" + usuario + ", ivaVenta=" + ivaVenta
+				+ ", totalVenta=" + totalVenta + ", valorVenta=" + valorVenta + ", detalleVentas=" + detalleVentas
+				+ "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cliente, codigo, detalleVentas, ivaVenta, totalVenta, usuario, valorVenta);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Venta other = (Venta) obj;
+		return Objects.equals(cliente, other.cliente) && codigo == other.codigo
+				&& Objects.equals(detalleVentas, other.detalleVentas)
+				&& Double.doubleToLongBits(ivaVenta) == Double.doubleToLongBits(other.ivaVenta)
+				&& Double.doubleToLongBits(totalVenta) == Double.doubleToLongBits(other.totalVenta)
+				&& Objects.equals(usuario, other.usuario)
+				&& Double.doubleToLongBits(valorVenta) == Double.doubleToLongBits(other.valorVenta);
+	}
 			
     
 }

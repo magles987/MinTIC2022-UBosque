@@ -1,0 +1,33 @@
+#vistaReporte fieldset{
+    display: flex;
+    flex-direction: row;    
+}
+
+#vistaReporte nav{
+    width: 30%;
+}
+
+#vistaReporte nav a{
+    display: block;
+
+    width: 90%;
+    margin: auto;
+
+    text-decoration: none;
+    color: rgba(255,255,255,0.8);
+
+}
+
+#vistaReporte nav a:hover{
+    box-shadow: 0 0 15px rgba(0,0,255, 1);
+    cursor: pointer;
+}
+
+#vistaReporte div[id^="vistaListar"] {
+    width: 70%;
+}
+
+#vistaReporte table{
+    border: white solid 2px;
+    color: rgba(255, 255, 255, 0.8);
+}
