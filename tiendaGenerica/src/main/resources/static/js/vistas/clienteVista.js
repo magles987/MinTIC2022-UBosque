@@ -88,7 +88,7 @@ function accederCampos(entidad = ClienteCtrl.getModelo()) {
 
 		$(selCampoCedula).val(entidad.cedula);
 		$(selCampoNombre).val(entidad.nombre);
-		$(selCampoDireccion).val(entidad.email);
+		$(selCampoDireccion).val(entidad.direccion);
 		$(selCampoTelefono).val(entidad.telefono);
 		$(selCampoEmail).val(entidad.email);
 	}

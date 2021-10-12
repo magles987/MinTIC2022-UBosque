@@ -10,16 +10,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import co.edu.unbosque.tiendaGenerica.model.Cliente;
-import co.edu.unbosque.tiendaGenerica.service.ClienteService;
+import co.edu.unbosque.tiendaGenerica.model.*;
+import co.edu.unbosque.tiendaGenerica.service.*;
 
-@RestController // Esta es una clase REST.
+@RestController // esta es una clase REST
 @RequestMapping("cliente")
 public class ClienteApi extends Api<Cliente, Long>{
-
-	/**Instancia de servicio (especializado) que accede a las consultas*/
-	private ClienteService service; 
 	
+	/**Servicio (especializado) que accede a las consultas*/
+	private ClienteService service; //evita el cast
+
 	@Autowired
 	public ClienteApi(ClienteService service) {
 		super(service, "cliente", "clientes");
@@ -29,91 +29,102 @@ public class ClienteApi extends Api<Cliente, Long>{
 	@Override
 	@GetMapping("/leerPorId")
 	public ResponseEntity<Map<String, Object>> leerPorId(@RequestParam(name = "cedula") Long cedula) {		
-		var r = super.leerPorId(cedula);
-		return r;
+		return super.leerPorId(cedula);
 	}		
-			
+	
+	
+	@GetMapping("/listar-con-venta")
+	public ResponseEntity<Map<String, Object>> listarConVenta() {
+		//---NO IMPLEMENTADO TODAVIA---
+		Map<String, Object> metadataResMap = new HashMap<String, Object>();	
+		return new ResponseEntity<Map<String,Object>>(metadataResMap, HttpStatus.NOT_IMPLEMENTED); 		
+	}		
+	
 	@Override
 	@PostMapping("/guardar") 
 	public ResponseEntity<Map<String, Object>> guardar(@RequestBody Cliente entity) {
-
-		return this.ejecutarModificacion(entity, entity.getCedula(), this.etiCreacion);		
+		return this.ejecutarModificacion(entity, entity.getCedula(), this.etiCreacion);	
 	}	
 	
 	@Override
 	@PutMapping("/actualizar")
 	public ResponseEntity<Map<String, Object>>  actualizar(@RequestBody Cliente entity) {
-		
-		return this.ejecutarModificacion(entity, entity.getCedula(), this.etiActualizacion);
+		return this.ejecutarModificacion(entity, entity.getCedula(), this.etiActualizacion);	
 	}
 	
 	@Override
 	@DeleteMapping("/eliminar/{cedula}")
 	public ResponseEntity<Map<String, Object>> eliminar(@PathVariable("cedula") Long id) {
-		
-		return this.ejecutarModificacion(null, id, this.etiEliminacion);
+		return this.ejecutarModificacion(null, id, this.etiEliminacion);	
 	}
 
 	//=========================================================
-	//Manejadores embebidos de validación y errores de la entidad
-	
+	//Manejadores embebidos de validacion y errores de la entidad
+
 	@Override
 	protected Map<String, Object> getMapErroresValidacion(Cliente entity, Long id, String etiModTipo) throws Exception {
-		
 		Map<String, Object> valMap = new HashMap<String, Object>();
-			
-		//Validación para crear y actualizar
+		
+		//validacion para creacion y actualizacion
 		if (etiModTipo.equals(this.etiCreacion) 
 				|| etiModTipo.equals(this.etiActualizacion)
 			) {
-		
+			
+			//validacion para creacion y actualizacion
 			if (entity.getCedula() == 0) {
-				valMap.put("cedula", "No tiene un valor valido");
+				valMap.put("cedula", "no tiene un valor valido");
 			}
 			
 			if (entity.getNombre().equals("") || entity.getNombre() == null) {
-				valMap.put("nombre", "No puede estar vacio");	
+				valMap.put("nombre", "no puede estar vacio");	
 			}
 			
 			if (entity.getEmail().equals("") || entity.getEmail() == null) {
-				valMap.put("email", "No puede estar vacio");	
+				valMap.put("email", "no puede estar vacio");	
 			}		
 			
-			//Validación dedicada a creación			
+			if (entity.getDireccion().equals("") || entity.getDireccion() == null) {
+				valMap.put("direccion", "no puede estar vacio");	
+			}			
+
+			if (entity.getTelefono().equals("") || entity.getTelefono() == null) {
+				valMap.put("telefono", "no puede estar vacio");	
+			}			
+			
+			//validacion dedicada a Creacion			
 			if (etiModTipo.equals(this.etiCreacion) ) {
-				
+
 				if(this.service.existePorId(id)) {
 					valMap.put("cedula", "Ya existe");
-				}
+				}				
 				
 				if (this.service.existePorEmail(entity.getEmail())) {
-					valMap.put("email", "El email ya esta registrado");
+					valMap.put("email", "ese email ya esta registrado");
 				}				
 			}
 			
-			//Validación dedicada a actualización			
+			//validacion dedicada a Actualizacion			
 			if (etiModTipo.equals(this.etiActualizacion) ) {
 				
-			}			
-			
-			
-		} else if(etiModTipo.equals(this.etiEliminacion)){
+			}				
+						
+		} else if(etiModTipo.equals(this.etiEliminacion)) {
 			
 			if(this.service.existePorId(id) == false) {
-				valMap.put("cedula", "No existe");
+				valMap.put("cedula", "no existe");
 			}
 			
 			if (id <= 0) {
 				valMap.put("cedula", "no tiene un valor valido");
-			}			
-			
+			}	
+						
 		} else {
-			throw new Exception("no se especifico tipo de modificacion"); //No se sabe que modificación hacer
-		}
-		
-		return valMap;
-		
+			throw new Exception("no se especifico tipo de modificacion"); //no se sabe que modificacion hacer
+		}		
+
+		return valMap;		
+
 	}
 	
-	
 }
+

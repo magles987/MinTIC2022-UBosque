@@ -2,13 +2,13 @@ import * as AuthVista from "./vistas/authVista.js";
 import * as UsuarioVista from "./vistas/usuarioVista.js";
 import * as ProveedorVista from "./vistas/proveedorVista.js";
 import * as ClienteVista from "./vistas/clienteVista.js";
-import * as ProductoVista from "./vistas/productoVista.js";
-import * as VentaVista from "./vistas/ventaVista.js";
-import * as ReporteVista from "./vistas/reporteVista.js";
+//import * as ProductoVista from "./vistas/productoVista.js";
+//import * as VentaVista from "./vistas/ventaVista.js";
+//import * as ReporteVista from "./vistas/reporteVista.js";
 
 //================================================
 /**selector navegacion principal */
-export var selNavPrincipal = `body > nav a`;
+export var selNavPrincipal = `#bodyApp > nav a`;
 
 //================================================
 $(document).ready(function(){
@@ -22,12 +22,13 @@ $(document).ready(function(){
     //actualizarVista(AuthVista.selIdVista);
 
     //solo en pruebas:
-    AuthVista.activarVista();  
-    UsuarioVista.activarVista();
-    ClienteVista.activarVista(); 
-//    ProveedorVista.activarVista();  
-//    VentaVista.activarVista();   
-//    ProductoVista.activarVista();
+     AuthVista.activarVista();  
+     UsuarioVista.activarVista();   
+     ClienteVista.activarVista(); 
+     ProveedorVista.activarVista();  
+    // VentaVista.activarVista();   
+    // ProductoVista.activarVista();
+    // ReporteVista.activarVista();
 });
 
 //================================================
@@ -105,4 +106,18 @@ function cerrarVistas() {
 
     ReporteVista.desactivarVista();
     $(ReporteVista.selIdVista).hide();       
+}
+
+
+/**
+ * clases para color de informacion
+ */
+ export function infoColorClass(selInfoForm, isValida) {
+	if (isValida) {
+		$(selInfoForm).addClass("infoLVerde");
+		$(selInfoForm).removeClass("infoLRoja");
+	} else {
+		$(selInfoForm).addClass("infoLRoja");
+		$(selInfoForm).removeClass("infoLVerde");
+	}
 }

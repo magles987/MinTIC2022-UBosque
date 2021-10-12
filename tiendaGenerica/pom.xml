@@ -11,6 +11,10 @@
 	<groupId>co.edu.unbosque</groupId>
 	<artifactId>tiendaGenerica</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
+	<!--IMPORTANTE: solo activar cuando se genere el .war-->
+	<packaging>war</packaging>
+	
 	<name>tiendaGenerica</name>
 	<description>Proyecto de tienda genérica ciclo 3 sprint boot</description>
 	<properties>
@@ -50,6 +54,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!--IMPORTANTE: solo activar cuando se genere el .war-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>			
+		
 	</dependencies>
 
 	<build>
