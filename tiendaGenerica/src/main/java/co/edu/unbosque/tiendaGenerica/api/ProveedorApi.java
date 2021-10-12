@@ -11,7 +11,7 @@ import co.edu.unbosque.tiendaGenerica.model.Proveedor;
 import co.edu.unbosque.tiendaGenerica.service.ProveedorService;
 
 @RestController // esta es una clase REST
-@RequestMapping("Proveedor")
+@RequestMapping("proveedor")
 public class ProveedorApi extends Api<Proveedor, Long>{
 	
 	/**instancia de Servicio (especializado) que accede a las consultas*/
@@ -31,7 +31,7 @@ public class ProveedorApi extends Api<Proveedor, Long>{
 	}
 	
 	@Override
-	@GetMapping("/guardar")
+	@PostMapping("/guardar")
 	public ResponseEntity<Map<String, Object>> guardar(@RequestBody Proveedor entity){
 		
 		return this.ejecutarModificacion(entity, entity.getNit(), this.etiCreacion);
