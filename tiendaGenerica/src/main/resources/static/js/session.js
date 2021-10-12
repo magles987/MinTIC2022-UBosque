@@ -2,3 +2,6 @@
 
 /**contiene la cedula del usuario actual de la aplicacion */
 var cedulaUsuarioActual = -1;
+/**
+*Ya casi
+*/

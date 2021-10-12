@@ -20,7 +20,7 @@ public abstract class MyService<TModel, Tid> {
 	 * @return todos los registros de la tabla
 	 * */
 	public List<TModel> leer() throws Exception {
-		return this.dao.findAll();
+		return this.dao.findAll(); 
 	}
 	
 	/**
@@ -45,9 +45,8 @@ public abstract class MyService<TModel, Tid> {
 	 * crear un nuevo registro
 	 * @param entity registro a crear
 	 */	
-	public void crear(TModel entity) throws Exception {
-		this.dao.save(entity);
-		return; 
+	public TModel crear(TModel entity) throws Exception {
+		return (TModel) this.dao.save(entity); 
 	}
 	
 	/**
