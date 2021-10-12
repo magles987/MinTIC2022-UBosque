@@ -24,9 +24,9 @@ public class DetalleVenta implements Serializable{
 	@Column(name="cantidad_producto", nullable = false)
 	private int cantidadProducto;
 	
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "codigo_producto", nullable = false)
-//	private Producto producto;  
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codigo_producto", nullable = false)
+	private Producto producto;  
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "codigo_venta", nullable = false)
@@ -57,14 +57,14 @@ public class DetalleVenta implements Serializable{
 		this.cantidadProducto = cantidadProducto;
 	}
 
-//	@JsonBackReference(value="producto-detalleVenta") //evita bucle de JSON infinito	
-//	public Producto getProducto() {
-//		return producto;
-//	}
+	@JsonBackReference(value="producto-detalleVenta") //evita bucle de JSON infinito	
+	public Producto getProducto() {
+		return producto;
+	}
 
-//	public void setProducto(Producto producto) {
-//		this.producto = producto;
-//	}
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
 
 	@JsonBackReference(value="venta-detalleVenta") //evita bucle de JSON infinito
 	public Venta getVenta() {

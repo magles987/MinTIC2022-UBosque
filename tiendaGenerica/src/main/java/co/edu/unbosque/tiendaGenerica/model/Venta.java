@@ -23,9 +23,9 @@ public class Venta implements Serializable{
 	@Column(name="codigo_venta")	
 	private long codigo;	
 		
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "cedula_cliente", nullable = false)
-//	private Cliente cliente;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cedula_cliente", nullable = false)
+	private Cliente cliente;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cedula_usuario", nullable = false)
@@ -52,14 +52,14 @@ public class Venta implements Serializable{
 		this.codigo = codigo;
 	}
 
-//	@JsonBackReference(value="cliente-venta") //--evita recusrsividad infinita
-//	public Cliente getCliente() {
-//		return cliente;
-//	}
+	@JsonBackReference(value="cliente-venta") //--evita recusrsividad infinita
+	public Cliente getCliente() {
+		return cliente;
+	}
 
-//	public void setCliente(Cliente cliente) {
-//		this.cliente = cliente;
-//	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
 	@JsonBackReference(value="usuario-venta") //--evita recusrsividad infinita
 	public Usuario getUsuario() {
@@ -94,14 +94,14 @@ public class Venta implements Serializable{
 		this.valorVenta = valorVenta;
 	}
 
-//	@JsonManagedReference(value="venta-detalleVenta") //evita bucle de JSON infinito
-//	public List<DetalleVenta> getDetalleVentas() {
-//		return detalleVentas;
-//	}
+	@JsonManagedReference(value="venta-detalleVenta") //evita bucle de JSON infinito
+	public List<DetalleVenta> getDetalleVentas() {
+		return detalleVentas;
+	}
 
-//	public void setDetalleVentas(List<DetalleVenta> detalleVentas) {
-//		this.detalleVentas = detalleVentas;
-//	}
+	public void setDetalleVentas(List<DetalleVenta> detalleVentas) {
+		this.detalleVentas = detalleVentas;
+	}
 			
     
 }

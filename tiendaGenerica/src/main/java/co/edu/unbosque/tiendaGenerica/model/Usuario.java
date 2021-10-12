@@ -29,11 +29,8 @@ public class Usuario implements Serializable{
 	@Column(name="password", length = 255, nullable = false)
 	private String password;	
 
-	//relacion bidireccional para la relacion usuario-venta
-//	@JsonManagedReference //evita bucle de JSON infinito
-//	@JsonIgnore
-//    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private List<Venta> ventas;		
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Venta> ventas;		
 
 	public long getCedula() {
 		return cedula;
@@ -75,15 +72,15 @@ public class Usuario implements Serializable{
 		this.password = password;
 	}
 
-//	@JsonManagedReference //evita bucle de JSON infinito
-//	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//	public List<Venta> getVentas() {
-//		return ventas;
-//	}
-//
-//	public void setVentas(List<Venta> venta) {
-//		this.ventas = venta;
-//	}
+	//relacion bidireccional para la relacion usuario-venta
+	@JsonManagedReference(value="usuario-venta") //evita bucle de JSON infinito
+	public List<Venta> getVentas() {		
+		return ventas;
+	}
+
+	public void setVentas(List<Venta> venta) {
+		this.ventas = venta;
+	}
 
 	
 	

@@ -30,10 +30,8 @@ public class Cliente implements Serializable {
 	@Column(name = "email_cliente", length = 255, nullable = false, unique = true)
 	private String email;
 
-	// relacion bidireccional para la relacion cliente-venta
-//	@JsonManagedReference //evita bucle de JSON infinito
-//    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private List<Venta> ventas;
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Venta> ventas;
 
 	public long getCedula() {
 		return cedula;
@@ -74,6 +72,18 @@ public class Cliente implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	// relación bidireccional para la relación cliente-venta
+	@JsonManagedReference(value="cliente-venta") //evita bucle de JSON infinito 
+	public List<Venta> getVentas() {
+		return ventas;
+	}
+
+	public void setVentas(List<Venta> ventas) {
+		this.ventas = ventas;
+	}
+	
+	
 
 }
 
