@@ -1,5 +1,6 @@
 import * as ClienteCtrl from "../api/clienteApi.js";
 
+import { infoColorClass } from "../main.js";
 //====================================================    
 //selectores de campos del form		
 
@@ -88,7 +89,7 @@ function accederCampos(entidad = ClienteCtrl.getModelo()) {
 
 		$(selCampoCedula).val(entidad.cedula);
 		$(selCampoNombre).val(entidad.nombre);
-		$(selCampoDireccion).val(entidad.email);
+		$(selCampoDireccion).val(entidad.direccion);
 		$(selCampoTelefono).val(entidad.telefono);
 		$(selCampoEmail).val(entidad.email);
 	}
@@ -133,6 +134,7 @@ function clickControllers(e) {
 					limpiarCampos();
 					limpiarErrores();
 					$(selInfoForm).text(metadatos.msn);
+					infoColorClass(selInfoForm, true);
 
 					break;
 
@@ -165,6 +167,7 @@ function clickControllers(e) {
 			}
 
 			$(selInfoForm).text(metadatos.msn);
+			infoColorClass(selInfoForm, false);
 
 		});
 
