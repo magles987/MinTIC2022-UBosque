@@ -153,7 +153,3 @@ export function desactivarVista() {
 	
 }
 
-
-
-
-

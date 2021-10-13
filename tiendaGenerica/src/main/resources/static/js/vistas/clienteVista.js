@@ -194,4 +194,3 @@ export function desactivarVista() {
 
 }
 
->>>>>>> refs/heads/magner
