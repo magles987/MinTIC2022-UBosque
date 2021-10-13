@@ -67,6 +67,11 @@ function valEmail(val) {
 		return "no puede estar vacio";
 	}
 
+	const reEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+	if (reEmail.test(val) == false) {
+		return "no es un email correcto";
+	}
+
 	return;
 }
 

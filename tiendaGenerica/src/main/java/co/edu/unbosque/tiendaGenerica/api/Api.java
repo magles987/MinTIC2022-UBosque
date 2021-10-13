@@ -104,7 +104,10 @@ public abstract class Api<TModel, Tid> {
 			List<TModel> entities = this.service.leer();
 			httpStatus = HttpStatus.OK;
 			metadataResMap.put(this.nomModel_p, entities);
-						
+			//determinar si esta vacio
+			if (entities.size() == 0) {
+				metadataResMap.put(this.nomMsn, "No hay registros almacenados");
+			}								
 		} catch (Exception e) {
 			e.printStackTrace();
 			httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
