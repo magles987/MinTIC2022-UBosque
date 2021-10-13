@@ -41,6 +41,7 @@ let selEventBotones = `${selForm} button`;
 let selEventCambioCantidadProd = `${selSeccVentaProducto} ${selCampoCantidadProducto}`;
 
 let selBtnConfirmarVenta = "#btnVentaConfirmar";
+let selBtnVentaLimpiar = "#btnVentaLimpiar";
 
 //====================================================   
 //
@@ -255,16 +256,19 @@ function ejecProductoController(paramSolicitud, elSeccVentaProducto) {
 	 e.preventDefault();
 
 	 let paramSolicitud = e.target.value;
-
+	 
 	 let elSeccVentaCliente = $(e.target).parents(selSeccVentaCliente);
 	 let elSeccVentaProducto = $(e.target).parents(selSeccVentaProducto);
+
+	//determina se es un boton del panel principal
+	let btnId = "#" + $(e.target).prop("id");
 
 	 //determinar el contexto de la consulta
 	 if (elSeccVentaCliente.size() > 0) {
 		 ejecClienteController(paramSolicitud, elSeccVentaCliente);
 	 } else if (elSeccVentaProducto.size() > 0) {
 		 ejecProductoController(paramSolicitud, elSeccVentaProducto);
-	 } else {
+	 } else if(btnId == selBtnConfirmarVenta){
 
 		 //se inicializa solo para tipar
 		 let entidad = ventaActual;
@@ -301,8 +305,13 @@ function ejecProductoController(paramSolicitud, elSeccVentaProducto) {
 						 break;
 				 }
 
+				//deshabilitar los campos cantidad
+				$(selCampoCantidadProducto).prop("disabled", true);
+
 				//bloquear btn confirmar
 				$(selBtnConfirmarVenta).prop("disabled", true);
+				//muestra el boton de limpieza
+				$(selBtnVentaLimpiar).show();
 
 			 })
 			 .catch((eMt) => {
@@ -325,9 +334,18 @@ function ejecProductoController(paramSolicitud, elSeccVentaProducto) {
 				 infoColorClass(selInfoForm, false);
 
 				//bloquear btn confirmar
-				$(selBtnConfirmarVenta).prop("disabled", true);			 
+				$(selBtnConfirmarVenta).prop("disabled", true);	
+				//muestra el boton de limpieza
+				$(selBtnVentaLimpiar).show();		 
 
 			 });
+	 }else if(btnId == selBtnVentaLimpiar){
+		//limpiar todos los campos
+		limpiarCampos();
+		//limpiar variables de modulo 
+		inicializarVarModulo();
+		//oculta el boton de limpieza
+		$(selBtnVentaLimpiar).hide();	
 	 }
  }
 
@@ -386,18 +404,35 @@ export function activarVista() {
 	$(selEventBotones).click(clickControllers);
 	$(selEventCambioCantidadProd).keyup(cambiarCantidad)//.change(cambiarCantidad);
 
-	//bloquear btn confirmar
+	//deshabilitar los campos cantidad
+	$(selCampoCantidadProducto).prop("disabled", true);
+
+	//deshabilitar btn confirmar
 	$(selBtnConfirmarVenta).prop("disabled", true);
+
+	//oculta el boton de limpieza
+	$(selBtnVentaLimpiar).hide();
+	
 }
 
 export function desactivarVista() {
 	//desactivar TODOS los eventos que se usen para la vista
 	$(selEventBotones).off();
 	$(selEventCambioCantidadProd).off();
+
+	//deshabilitar los campos cantidad
+	$(selCampoCantidadProducto).prop("disabled", true);
+
+	//deshabilitar btn confirmar
+	$(selBtnConfirmarVenta).prop("disabled", true);
+
 	//limpiar todos los campos
 	limpiarCampos();
 	//limpiar variables de modulo 
 	inicializarVarModulo();
+
+	//oculta el boton de limpieza
+	$(selBtnVentaLimpiar).hide();
 
 }
 

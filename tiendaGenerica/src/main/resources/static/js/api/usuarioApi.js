@@ -5,7 +5,7 @@ var nomModel_s = "usuario";
 var nomModel_p = "usuarios"
 
 var urlBase = `${nomModel_s}/`;
-
+//magnerApp/
 /** 
  * @return un modelo modelo vacio para usarlo como instancia 
  * o para tipar
@@ -45,8 +45,9 @@ function valCedula(val) {
 		return "no puede estar vacio";
 	}
 
-	if (isNaN(parseInt(val)) || parseInt(val) <= 0) {
-		return "no es una cedula valida";
+	const reNumStr = /^[0-9]+$/
+	if (reNumStr.test(val) == false) {
+		return "debe ser cédula valida";
 	}
 
 	return;
@@ -69,7 +70,7 @@ function valEmail(val) {
 
 	const reEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 	if (reEmail.test(val) == false) {
-		return "no es un email correcto";
+		return "no es un email valido";
 	}
 
 	return;
@@ -203,6 +204,11 @@ export function ejecutarController(paramSolicitud, entidad = getModelo()) {
 			//ejecutar validadores para este caso
 			errorModelo.cedula = valCedula(entidad.cedula);
 
+			//validacion para no eliminar el mismo usuario actual:
+			if(cedulaUsuarioActual == entidad.cedula){
+				errorModelo.cedula = "No eliminar usuario actualmente logueado"
+			} 
+
 			//se arma la solicitud con el parametro identificador para eliminacion
 			url = `${url}/${entidad.cedula}`
 			break;   
@@ -265,7 +271,5 @@ export function ejecutarController(paramSolicitud, entidad = getModelo()) {
 	})
 
 };
-
-
 
 

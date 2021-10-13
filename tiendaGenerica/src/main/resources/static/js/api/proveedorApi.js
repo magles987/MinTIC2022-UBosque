@@ -44,9 +44,11 @@ function valNit(val) {
 		return "no puede estar vacio";
 	}
 
-	if (isNaN(parseInt(val)) || parseInt(val) <= 0) {
-		return "no es un NIT valido";
+	const reNumStr = /^[0-9]+$/
+	if (reNumStr.test(val) == false) {
+		return "no es un NIT valido";;
 	}
+
 	return;
 }
 
@@ -83,9 +85,10 @@ function valTelefono(val) {
 		return "no puede estar vacio";
 	}
 
-	if (isNaN(parseInt(val)) || parseInt(val) <= 0) {
-		return "debe ser numerico";
-	}	
+	const reNumStr = /^[0-9]+$/
+	if (reNumStr.test(val) == false) {
+		return "debe ser número valido";
+	}
 
 	return;
 }
@@ -247,5 +250,4 @@ export function ejecutarController(paramSolicitud, entidad = getModelo()) {
 	})
 
 } ;
-
 
