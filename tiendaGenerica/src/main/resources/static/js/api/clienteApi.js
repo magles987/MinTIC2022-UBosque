@@ -44,8 +44,9 @@ function valCedula(val) {
 		return "no puede estar vacio";
 	}
 
-	if (isNaN(parseInt(val)) || parseInt(val) <= 0) {
-		return "no es una cedula valida";
+	const reNumStr = /^[0-9]+$/
+	if (reNumStr.test(val) == false) {
+		return "debe ser cédula valida";
 	}
 	
 	return;
@@ -65,10 +66,10 @@ function valEmail(val) {
 	if (!val || val == "" || val == null) {
 		return "no puede estar vacio";
 	}
-	
+
 	const reEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 	if (reEmail.test(val) == false) {
-		return "no es un email correcto";
+		return "no es un email valido";
 	}	
 
 	return;
@@ -89,8 +90,9 @@ function valTelefono(val) {
 		return "no puede estar vacio";
 	}
 
-	if (isNaN(parseInt(val)) || parseInt(val) <= 0) {
-		return "no es una cedula valida";
+	const reNumStr = /^[0-9]+$/
+	if (reNumStr.test(val) == false) {
+		return "debe ser número valido";
 	}
 
 	return;
