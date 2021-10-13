@@ -25,6 +25,9 @@
 
 #vistaReporte div[id^="vistaListar"] {
     width: 70%;
+    overflow: auto; /*--OJO deberia ser en un div hijo--*/
+    margin-top: -5%;
+    margin-bottom: 2%;
 }
 
 #vistaReporte table{

@@ -17,7 +17,7 @@ public class TiendaGenericaApplication extends SpringBootServletInitializer{
     }	
 	
 	public static void main(String[] args) {
-		String pathBase = "/TiendaGenericaG2E6";
+		String pathBase = "/Grupo02Eq06TiendaGenerica";
 		System.setProperty("server.servlet.context-path", pathBase);
 		SpringApplication.run(TiendaGenericaApplication.class, args);
 	}
