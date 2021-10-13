@@ -1,0 +1,234 @@
+#vistaVenta fieldset{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 1%;
+}
+
+#vistaVenta label{
+    font-size: 1.1em;
+    color: rgba(255,255,255,0.8);    
+}
+
+#vistaVenta input{
+    width: 10%;
+
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+
+    background-color: rgba(32,32,255,0.15);
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgba(255,255,255,0.8);
+    box-shadow: 0 0 3px rgba(255,255,255,0.8);
+
+    border-radius: 10px;
+}
+
+#vistaVenta button{
+    color: rgba(255,255,255,0.8);
+
+    margin: 5px;
+    padding: 8px;
+    
+    border-radius: 18px;
+    border-color: rgba(32,32,255,0.5);
+    border-style: solid;
+    border-width: 4px;
+    background-color: rgba(0, 0, 0, 1);
+
+    box-shadow: 0 0 15px rgba(0,0,255,0.5);
+}
+
+#vistaVenta button:hover{
+    box-shadow: 0 0 15px rgba(0,0,255, 1);
+    cursor: pointer;
+}
+
+#vistaVenta button:active{
+    border-color: rgba(32,32,32,1);
+    box-shadow: 0 0 2px rgba(64,64,64, 0.5);
+    transform: scale(0.85);
+    background: radial-gradient(circle, rgba(32,32,32,1), rgba(16,16,16,1), rgba(0,0,0,1))
+}
+
+#vistaVenta button:disabled{
+    border-color: rgba(32,32,32,0.5);
+    box-shadow: 0 0 2px rgba(128,128,128, 0.4);
+    background: radial-gradient(circle, rgba(32,32,32,1), rgba(16,16,16,1), rgba(0,0,0,1))
+}
+
+#vistaVenta input[type="text"]:disabled {
+    background: rgba(32,32,32,0.5);
+}
+
+#vistaVenta .ventaCliente{
+    width: 70%;
+}
+
+#vistaVenta .ventaCliente label{
+    font-size: 1.2em;
+}
+
+#vistaVenta .ventaCliente #ventaCedulaCliente{
+    width: 18%;
+
+    font-size: 1.1em;
+}
+
+#vistaVenta .ventaCliente #ventaNombreCliente{
+    width: 35%;
+
+    font-size: 1.1em;
+}
+
+#vistaVenta .ventaCliente button{
+    font-size: 0.9em;
+    border-width: 3px;
+    padding: 2px;
+    margin: 4px;
+    margin-right: 15px;
+}
+
+#vistaVenta .ventaCliente span[id^="error"]{
+    padding-top: 0.1%;
+    margin-left: 0%;
+
+    font-size: 0.7em;
+    text-align: left;
+}
+
+#vistaVenta .ventaCodigo{
+    width: 30%;
+    text-align: right;
+}
+
+#vistaVenta .ventaCodigo label{
+    font-size: 1.5em;
+}
+
+#vistaVenta .ventaCodigo #ventaConsec{
+    width: 50%;
+    font-size: 1.5em;
+}
+
+#vistaVenta table{
+    width: 100%;
+
+    margin-top: 1%;
+}
+
+#vistaVenta table label{
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#vistaVenta table td span[for]{    
+    width: 100%;
+    display: block;
+
+    padding-top: 0.1%;
+    margin-left: 0%;
+
+    color: rgba(255,0,0,0.8);    
+    font-size: 0.65em;
+    text-align: left;
+}
+
+#vistaVenta table td span.simboloMoneda{
+    font-size: 1.2em;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#vistaVenta table button{
+    font-size: 0.9em;
+    border-width: 3px;
+    padding: 2px;
+    margin: 4px;
+    margin-right: 15px;;
+}
+
+#vistaVenta table th:nth-child(1)
+,#vistaVenta table th:nth-child(2)
+,#vistaVenta table td:nth-child(1)
+,#vistaVenta table td:nth-child(2){
+    text-align: left;
+}
+
+#vistaVenta table th:nth-child(3)
+,#vistaVenta table th:nth-child(4)
+,#vistaVenta table td:nth-child(3)
+,#vistaVenta table td:nth-child(4){
+    text-align: right;
+}
+
+#vistaVenta table th:nth-child(1)
+,#vistaVenta table td:nth-child(1){
+    width: 35%;
+}
+
+#vistaVenta table th:nth-child(2)
+,#vistaVenta table td:nth-child(2){
+    width: 35%;
+}
+
+#vistaVenta table th:nth-child(3)
+,#vistaVenta table td:nth-child(3){
+    width: 10%;
+}
+
+#vistaVenta table th:nth-child(4)
+,#vistaVenta table td:nth-child(4){
+    width: 20%;
+}
+
+#vistaVenta table tbody td:nth-child(1) input{
+    width: 45%;
+}
+
+#vistaVenta table tbody td:nth-child(2) input{
+    width: 90%;
+}
+
+#vistaVenta table tbody td:nth-child(3) input{
+    width: 60%;
+}
+
+#vistaVenta table tbody td:nth-child(4) input{
+    width: 50%;
+}
+
+#vistaVenta table tfoot td{
+    padding-top: 1%;
+}
+
+#vistaVenta table tfoot td:nth-child(2){
+    text-align: right;
+}
+
+#vistaVenta table tfoot td:nth-child(3) input{
+    width: 85%;
+}
+
+#vistaVenta .bannerInfo{
+    max-height: 80px;
+    font-size: 0.75em;
+    text-align: left;
+    overflow: auto;
+    margin-top: -11%;
+}
+
+#vistaVenta .panelBotones{
+    width: 100%;
+    margin-top: 1%;
+}
+
+/* #vistaVenta .panelBotones #btnVentaConfirmar:disabled{
+    width: 100%;
+    margin-top: 1%;
+} */
+
+

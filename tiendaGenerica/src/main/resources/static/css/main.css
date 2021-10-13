@@ -175,6 +175,8 @@ html{
 
     /* display: flex; */
 
+	max-height: 500px;
+
     margin-left: 1%;
     margin-right: 1%;
 
