@@ -3,7 +3,7 @@ var nomModel_s = "cliente";
 /**Nombre del modelo o su correspondiente entidad en Plural*/
 var nomModel_p = "clientes"
 
-var urlBase = `/${nomModel_s}/`;
+var urlBase = `${nomModel_s}/`;
 
 /** 
  * @return un modelo modelo vacio para usarlo como instancia 
@@ -16,6 +16,7 @@ export function getModelo(){
 		direccion :"",
 		telefono :"",
 		email:"",
+		ventas:[] //referencia virtual
 	};
 }
 
