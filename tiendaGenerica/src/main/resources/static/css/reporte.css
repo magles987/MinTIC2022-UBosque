@@ -1,36 +1,70 @@
 #vistaReporte fieldset{
     display: flex;
-    flex-direction: row;    
+    flex-direction: row;
+
+    padding-right: 1%;
+    padding-left: 1%;
+}
+
+#vistaReporte legend{
+    margin-left: 2.3%;
 }
 
 #vistaReporte nav{
-    width: 30%;
+    width: 25%;
 }
 
 #vistaReporte nav a{
     display: block;
-
-    width: 90%;
+    width: 94%;
+    
     margin: auto;
+    padding: 1%;
 
     text-decoration: none;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,0.2);
+    -webkit-text-stroke: 1px rgba(128,128,255,0.8);
+    border: solid rgba(128,128,128,0.5) 1px;
+    border-radius: 5px;
 
 }
 
 #vistaReporte nav a:hover{
-    box-shadow: 0 0 15px rgba(0,0,255, 1);
+    box-shadow: 0 0 15px rgba(128,128,128, 0.8);
+    border-color: rgba(255,255,255,0.8);
     cursor: pointer;
+
+    transform: translateX(0.2em);
 }
 
 #vistaReporte div[id^="vistaListar"] {
-    width: 70%;
-    overflow: auto; /*--OJO deberia ser en un div hijo--*/
-    margin-top: -5%;
+    width: 75%;    
+    margin-top: -7%;
     margin-bottom: 2%;
 }
 
+#vistaReporte  h3{
+    
+    font-size: 1.5em;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    margin-block-end: 2%;
+
+    
+}
+
+#vistaReporte  .tScroll{
+    width: 100%;
+    max-height: 440px;
+    overflow-y: auto;
+    overflow-x: hidden; 
+}
+
 #vistaReporte table{
+    margin: auto;
+    width: 99%;
+    table-layout: fixed;
+
     border: white solid 2px;
     color: rgba(255, 255, 255, 0.8);
 }
