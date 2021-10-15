@@ -23,5 +23,9 @@ public class ClienteService extends MyService<Cliente, Long>{
 	public boolean existePorEmail(String email) throws Exception{
 		return this.dao.existsByEmail(email);
 	}
+	
+	public boolean existePorTelefono(String telefono) throws Exception{
+		return this.dao.existsByTelefono(telefono);
+	}	
 
 }

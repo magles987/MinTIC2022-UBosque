@@ -26,7 +26,7 @@ public class Proveedor implements Serializable{
 	@Column(name="nombre_proveedor", length = 255, nullable = false)	
 	private String nombre;
 	
-	@Column(name="telefono_proveedor", length = 255, nullable = false, unique = true)
+	@Column(name="telefono_proveedor", length = 255, nullable = false)
 	private String telefono;
 
 	//relacion bidireccional para la relacion proveedor-producto	

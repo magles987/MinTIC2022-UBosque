@@ -6,5 +6,5 @@ import co.edu.unbosque.tiendaGenerica.model.Proveedor;
 
 
 public interface IProveedorDao extends JpaRepository<Proveedor, Long> {
-
+	boolean existsByTelefono(String telefono);
 }

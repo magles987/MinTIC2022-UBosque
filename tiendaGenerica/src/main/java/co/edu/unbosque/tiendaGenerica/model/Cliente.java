@@ -28,7 +28,7 @@ public class Cliente implements Serializable {
 	@Column(name="nombre_cliente", length = 255, nullable = false)	
 	private String nombre;
 	
-	@Column(name="telefono_cliente", length = 255, nullable = false, unique = true)
+	@Column(name="telefono_cliente", length = 255, nullable = false)
 	private String telefono;
 
 	//relacion bidireccional para la relacion cliente-venta

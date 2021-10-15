@@ -7,5 +7,6 @@ import co.edu.unbosque.tiendaGenerica.model.Cliente;
 public interface IClienteDao extends JpaRepository<Cliente, Long> {
 
 	boolean existsByEmail(String email);
+	boolean existsByTelefono(String telefono);
 
 }

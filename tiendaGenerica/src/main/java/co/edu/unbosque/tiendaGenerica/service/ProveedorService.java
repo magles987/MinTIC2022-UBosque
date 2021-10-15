@@ -21,5 +21,8 @@ public class ProveedorService extends MyService<Proveedor, Long>{
 		this.dao = dao;
 	}
 
+	public boolean existePorTelefono(String telefono) throws Exception{
+		return this.dao.existsByTelefono(telefono);
+	}	
 
 }

@@ -60,6 +60,8 @@ public class ProductoApi extends Api<Producto, Long>{
 
 		Map<String, Object> metadataResMap = new HashMap<String, Object>();
 		
+		metadataResMap.put(this.nomTipoConsulta, etiCreacion);	
+		
 		String cSeparadorFila = "\r\n"; //caracter separador
 		String cSeparadorColumna = ","; //caracter separador
 		
@@ -125,7 +127,7 @@ public class ProductoApi extends Api<Producto, Long>{
 			//determina si todos los producto no son validos
 			if(cantProds == valsMap.size()) {
 				metadataResMap.put(this.nomErrorValidacion, valsMap);
-				metadataResMap.put(this.nomMsn, "se encontraron errores de validacion en todos los datos");
+				metadataResMap.put(this.nomMsn, "se encontraron errores de validacion en todos los datos del archivo");
 				return new ResponseEntity<Map<String, Object>>(metadataResMap, HttpStatus.BAD_REQUEST);					
 			}
 					
@@ -190,7 +192,7 @@ public class ProductoApi extends Api<Producto, Long>{
 			if (etiModTipo.equals(this.etiCreacion) ) {
 
 				if(this.service.existePorId(id)) {
-					valMap.put("cedula", "Ya existe");
+					valMap.put("codigo", "Ya existe");
 				}				
 							
 			}

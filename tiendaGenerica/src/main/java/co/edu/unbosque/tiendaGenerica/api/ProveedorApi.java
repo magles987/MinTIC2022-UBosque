@@ -82,11 +82,19 @@ public class ProveedorApi extends Api<Proveedor, Long>{
 				if(this.service.existePorId(id)) {
 					valMap.put("nit", "Ya existe");
 				}	
-							
+				
+				if(this.service.existePorTelefono(entity.getTelefono())) {
+					valMap.put("telefono", "Ya existe");
+				}					
+															
 			}
 			
 			//validacion dedicada a Actualizacion			
 			if (etiModTipo.equals(this.etiActualizacion) ) {
+				
+				if(this.service.existePorTelefono(entity.getTelefono())) {
+					valMap.put("telefono", "Ya existe");
+				}					
 				
 			}				
 			
