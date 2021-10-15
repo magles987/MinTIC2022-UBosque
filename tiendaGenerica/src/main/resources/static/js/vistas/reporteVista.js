@@ -126,7 +126,7 @@ function clickListar(e) {
 				})
 			break;
 			
-		case selVistaListarProveedor:
+		case selVistaListarProveedores:
 			ProveedorCtrl.ejecutarController("GET:listar", null)
 				.then((metadatos) =>{
 					let datos= metadatos.proveedores
@@ -207,7 +207,7 @@ function clickListar(e) {
 						fila += "</tr>";
 						tabla += fila;
 						
-						tTotalVentas+= tventas;
+						tTotalVentas+= tVentas;
 					} 
 					fila += "<tr>";
 					fila += "<td colspan='2'>TOTAL VENTAS</td>";
@@ -224,7 +224,7 @@ function clickListar(e) {
 		case selVistaListarProductos:
 			ProductosCtrl.ejecutarController("GET:listar", null)
 				.then((metadatos) =>{
-					let datos= metadatos.producto
+					let datos= metadatos.productos
 					if (datos.length == 0){
 						$(selInfoForm).text(msmVacio);
 						return;
