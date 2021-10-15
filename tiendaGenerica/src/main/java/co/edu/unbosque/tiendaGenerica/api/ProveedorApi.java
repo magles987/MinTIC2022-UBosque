@@ -91,11 +91,7 @@ public class ProveedorApi extends Api<Proveedor, Long>{
 			
 			//validacion dedicada a Actualizacion			
 			if (etiModTipo.equals(this.etiActualizacion) ) {
-				
-				if(this.service.existePorTelefono(entity.getTelefono())) {
-					valMap.put("telefono", "Ya existe");
-				}					
-				
+
 			}				
 			
 		} else if(etiModTipo.equals(this.etiEliminacion)) {
