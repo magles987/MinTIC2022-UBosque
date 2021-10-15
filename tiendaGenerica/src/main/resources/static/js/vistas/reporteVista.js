@@ -196,7 +196,7 @@ function crearTabla(datos = [], selListaPor = "") {
 				
 				if(data.length == 0){
 					$(selInfoConsulta).text(metadatos.msn);
-					infoColorClass(selInfoForm, false);
+					infoColorClass(selInfoConsulta, false);
 					return;
 				}
 				$(selInfoConsulta).text("");

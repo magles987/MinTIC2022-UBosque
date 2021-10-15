@@ -128,12 +128,13 @@ function setTagsError(errorModelo = ProductoCtrl.getModelo()) {
 
 	 //se inicializa solo para tipar
 	 let entidad = ProductoCtrl.getModelo();
-	 entidad = accederCampos(null);
 
 	 //consulta especial de archivo		
 	 if (paramSolicitud === "POST:cargar-archivo") {
 		 //la variable entidad almacenara el archivo
 		 entidad = $(selCampoArchivo).prop("files")[0]; //solo el primero
+	 }else{
+		 entidad = accederCampos(null);
 	 }
 
 	 ProductoCtrl.ejecutarController(paramSolicitud, entidad)
@@ -197,6 +198,13 @@ export var selIdVista = "#vistaProducto";
 export function activarVista() {
 	//activar TODOS los eventos que se usen para la vista
 	$(selEventBotones).click(clickControllers);
+	
+	//ocultar CRUD basico:
+	$(`${selForm} .campo`).hide();
+	$(`${selForm} .campo`).last().show(); //el ultimo debe ser el de archivo
+	$(`${selForm} button`).hide();
+	$(`${selForm} button`).last().show(); //el ultimo debe ser el de archivo
+
 }
 
 export function desactivarVista() {
@@ -207,3 +215,6 @@ export function desactivarVista() {
 	//limpiar variables de modulo 
 
 }
+
+
+

@@ -100,11 +100,17 @@ public class ClienteApi extends Api<Cliente, Long>{
 				
 				if (this.service.existePorEmail(entity.getEmail())) {
 					valMap.put("email", "ese email ya esta registrado");
-				}				
+				}			
+				
+				if(this.service.existePorTelefono(entity.getTelefono())) {
+					valMap.put("telefono", "Ya existe");
+				}	
+				
 			}
 			
 			//validacion dedicada a Actualizacion			
 			if (etiModTipo.equals(this.etiActualizacion) ) {
+				
 				
 			}				
 						
@@ -125,6 +131,6 @@ public class ClienteApi extends Api<Cliente, Long>{
 		return valMap;		
 
 	}
+
 	
 }
-
