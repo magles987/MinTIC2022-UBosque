@@ -190,7 +190,7 @@ public class ProductoApi extends Api<Producto, Long>{
 			if (etiModTipo.equals(this.etiCreacion) ) {
 
 				if(this.service.existePorId(id)) {
-					valMap.put("cedula", "Ya existe");
+					valMap.put("codigo", "Ya existe");
 				}				
 							
 			}
