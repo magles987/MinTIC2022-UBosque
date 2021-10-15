@@ -11,7 +11,7 @@ html{
     flex-direction: column;
 
     font-size: 18px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Arial;
 
     background:
         radial-gradient(black 15%, transparent 16%) 0 0,

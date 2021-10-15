@@ -1,9 +1,9 @@
 import * as UsuarioCtrl from "../api/usuarioApi.js";
 import * as ClienteCtrl from "../api/clienteApi.js";
 import * as ProveedorCtrl from "../api/proveedorApi.js";
-//import * as ProductoCtrl from "../api/productoApi.js";
+import * as ProductoCtrl from "../api/productoApi.js";
 import * as VentaCtrl from "../api/ventaApi.js";
-//import * as DetalleVentaCtrl from "../api/detalleVentaApi.js"
+import * as DetalleVentaCtrl from "../api/detalleVentaApi.js"
 
 import { infoColorClass } from "../main.js";
 
@@ -193,7 +193,7 @@ function clickListar(e) {
 						let tVentas = 0;
 						let vs = datos[i].ventas;			
 						for (let j = 0; j < vs.length; j++) {
-							tventas += vs[j].totalVenta;							
+							tVentas += vs[j].totalVenta;							
 						}
 						
 						//Factor de redondeo, la cantidad de 0 indica la cantidad maxima de decimales a redondear
@@ -206,6 +206,8 @@ function clickListar(e) {
 						fila += "<td>" + tVentas+ "</td>";										
 						fila += "</tr>";
 						tabla += fila;
+						
+						fila = "";
 						
 						tTotalVentas+= tVentas;
 					} 
@@ -222,9 +224,9 @@ function clickListar(e) {
 			break;
 			
 		case selVistaListarProductos:
-			ProductosCtrl.ejecutarController("GET:listar", null)
+			ProductoCtrl.ejecutarController("GET:listar", null)
 				.then((metadatos) =>{
-					let datos= metadatos.productos
+					let datos = metadatos.productos;
 					if (datos.length == 0){
 						$(selInfoForm).text(msmVacio);
 						return;

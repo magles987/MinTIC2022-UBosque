@@ -18,7 +18,7 @@
     margin: auto;
 	text-align: center;
     text-decoration: none;
-    color: rgba(255,255,255,0.2);
+    color: rgba(255, 255, 255, 0.6);
     
     border-radius: 18px;
     border-color: rgba(32,32,255,0.5);
@@ -33,12 +33,13 @@
     border-color: rgba(255,255,255,0.8);
     cursor: pointer;
     
+    color: rgba(255,255,255,1);
+    
     transform: translateX(0.2em);
 }
 
 #vistaReporte div[id^="vistaListar"] {
     width: 75%;
-    overflow: auto; /*--OJO deberia ser en un div hijo--*/
     margin-top: -7%;
     margin-bottom: 2%;
 }
@@ -60,7 +61,6 @@
 #vistaReporte table{
 	margin: auto;
 	width: 99%;
-	table-layout:fixed;
 		
 	border-color: rgba(128,128,255, 0.5);
     border-style: solid;
@@ -69,14 +69,26 @@
     color: rgba(255, 255, 255, 0.8);     
 }
 
+#vistaReporte table tr:nth-child(even) {
+    background-color: rgb(152 153 179 / 86%);
+}
+
+#vistaReporte table tr:nth-child(odd) {
+    background-color: rgba(130, 130, 130, 0.2);
+}
+
 #vistaReporte table thead tr th{
 	border: 1px solid rgba(170, 170, 170, 0.5);
 	text-align: center;
-    font-size: 1em;
+    font-size: 1.1em;
+    background-color: rgb(38 41 156 / 50%);
 }
 
 #vistaReporte table tbody tr td{
 	border: 1px solid rgba(170, 170, 170, 0.5);
 	text-align: left;
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
+
+
+

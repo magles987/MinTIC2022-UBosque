@@ -1,9 +1,9 @@
 import * as AuthVista from "./vistas/authVista.js";
 import * as UsuarioVista from "./vistas/usuarioVista.js";
-//import * as ProveedorVista from "./vistas/proveedorVista.js";
+import * as ProveedorVista from "./vistas/proveedorVista.js";
 import * as ClienteVista from "./vistas/clienteVista.js";
-//import * as ProductoVista from "./vistas/productoVista.js";
-//import * as VentaVista from "./vistas/ventaVista.js";
+import * as ProductoVista from "./vistas/productoVista.js";
+import * as VentaVista from "./vistas/ventaVista.js";
 import * as ReporteVista from "./vistas/reporteVista.js";
 
 //================================================
@@ -19,17 +19,16 @@ $(document).ready(function(){
     });
 
     //actualiza a la vista incial al momento de iniciar la aplicacion
-    //actualizarVista(AuthVista.selIdVista);
+    actualizarVista(AuthVista.selIdVista);
 
     //solo en pruebas:
-
-     AuthVista.activarVista();  
-     UsuarioVista.activarVista();   
-     ClienteVista.activarVista(); 
-    // ProveedorVista.activarVista();  
+     //AuthVista.activarVista();  
+     //UsuarioVista.activarVista();   
+     //ClienteVista.activarVista(); 
+     //ProveedorVista.activarVista();  
     // VentaVista.activarVista();   
     // ProductoVista.activarVista();
-    ReporteVista.activarVista();
+    // ReporteVista.activarVista();
 });
 
 //================================================
