@@ -127,7 +127,7 @@ public class ProductoApi extends Api<Producto, Long>{
 			//determina si todos los producto no son validos
 			if(cantProds == valsMap.size()) {
 				metadataResMap.put(this.nomErrorValidacion, valsMap);
-				metadataResMap.put(this.nomMsn, "se encontraron errores de validacion en todos los datos del archivo");
+				metadataResMap.put(this.nomMsn, "se encontraron errores de validacion en todos los productos del archivo o ya estan creados");
 				return new ResponseEntity<Map<String, Object>>(metadataResMap, HttpStatus.BAD_REQUEST);					
 			}
 					

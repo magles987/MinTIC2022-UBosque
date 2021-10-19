@@ -137,8 +137,16 @@ function setTagsError(errorModelo = ProductoCtrl.getModelo()) {
 		 entidad = accederCampos(null);
 	 }
 
+	//spinner animacion show
+	$(selInfoForm).text("");
+	$(selInfoForm).addClass("spinner");
+	$(selInfoForm).show();
+
 	 ProductoCtrl.ejecutarController(paramSolicitud, entidad)
 		 .then((metadatos) => {
+
+			//spinner animacion hide
+			$(selInfoForm).removeClass("spinner");
 
 			 switch (metadatos.tipoConsulta) {
 				 case "creacion":
@@ -173,6 +181,9 @@ function setTagsError(errorModelo = ProductoCtrl.getModelo()) {
 		 .catch((eMt) => {
 			 let metadatos = ProductoCtrl.getMetadatos();
 			 metadatos = eMt;
+
+			//spinner animacion hide
+			$(selInfoForm).removeClass("spinner");
 
 			 limpiarErrores();
 

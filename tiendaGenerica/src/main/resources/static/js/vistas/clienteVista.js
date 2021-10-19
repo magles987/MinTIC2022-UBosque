@@ -123,8 +123,16 @@ function clickControllers(e) {
 
 	let paramSolicitud = e.target.value;
 
+	//spinner animacion show
+	$(selInfoForm).text("");
+	$(selInfoForm).addClass("spinner");
+	$(selInfoForm).show();
+
 	ClienteCtrl.ejecutarController(paramSolicitud, entidad)
 		.then((metadatos) => {
+
+			//spinner animacion hide
+			$(selInfoForm).removeClass("spinner");
 
 			switch (metadatos.tipoConsulta) {
 				case "creacion":
@@ -159,6 +167,9 @@ function clickControllers(e) {
 		.catch((eMt) => {
 			let metadatos = ClienteCtrl.getMetadatos();
 			metadatos = eMt;
+
+			//spinner animacion hide
+			$(selInfoForm).removeClass("spinner");
 
 			limpiarErrores();
 

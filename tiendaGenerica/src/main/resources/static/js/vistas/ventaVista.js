@@ -273,8 +273,16 @@ function ejecProductoController(paramSolicitud, elSeccVentaProducto) {
 		 //se inicializa solo para tipar
 		 let entidad = ventaActual;
 
+		//spinner animacion show
+		$(selInfoForm).text("");
+		$(selInfoForm).addClass("spinner");
+		$(selInfoForm).show();
+
 		 VentaCtrl.ejecutarController(paramSolicitud, entidad)
 			 .then((metadatos) => {
+
+				//spinner animacion hide
+				$(selInfoForm).removeClass("spinner");
 
 				 switch (metadatos.tipoConsulta) {
 					 case "creacion":
@@ -317,6 +325,9 @@ function ejecProductoController(paramSolicitud, elSeccVentaProducto) {
 			 .catch((eMt) => {
 				 let metadatos = UsuarioCtrl.getMetadatos();
 				 metadatos = eMt;
+
+				 //spinner animacion hide
+				 $(selInfoForm).removeClass("spinner");
 
 				 limpiarErrores();
 

@@ -95,6 +95,11 @@ function setTagsError(errorModelo = UsuarioCtrl.getModelo()) {
 
 	let paramSolicitud = e.target.value;
 
+	//spinner animacion show
+	$(selInfoForm).text("");
+	$(selInfoForm).addClass("spinner");
+	$(selInfoForm).show();
+
 	UsuarioCtrl.ejecutarController(paramSolicitud, entidad)
 	.then((metadatos)=>{
 
@@ -107,6 +112,10 @@ function setTagsError(errorModelo = UsuarioCtrl.getModelo()) {
 		//aqui debe acceder a otra vista y mostrar navegacion principal
 		$(selNavPrincipal).show();
 		actualizarVista("#vistaUsuario");
+		
+		//spinner animacion hide
+		$(selInfoForm).removeClass("spinner");
+		$(selInfoForm).hide();
 	})
 	.catch((eMt)=>{
 		let metadatos = UsuarioCtrl.getMetadatos();
@@ -120,6 +129,9 @@ function setTagsError(errorModelo = UsuarioCtrl.getModelo()) {
 			
 			setTagsError(metadatos.errorValidacion);
 		}
+		
+		//spinner animacion hide
+		$(selInfoForm).removeClass("spinner");	
 		
 		$(selInfoForm).text(metadatos.msn);
 		infoColorClass(selInfoForm, false);

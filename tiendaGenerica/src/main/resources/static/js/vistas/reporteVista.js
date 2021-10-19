@@ -18,7 +18,7 @@ let selVistaListarProductos = "#vistaListarProductos";
 let selVistaListarVentas = "#vistaListarVentas";
 
 //selector informativo general para la consulta
-let selInfoConsulta = "#infoReporte";
+let selInfoConsulta = `${selReporte} .bannerInfo`;
 
 //selectores de eventos en general
 let selEventNavA = `${selReporte} nav a`;
@@ -185,12 +185,20 @@ function crearTabla(datos = [], selListaPor = "") {
 
 	let promesaListar = Promise.resolve([]);
 
+	//spinner animacion show
+	$(selInfoConsulta).text("");
+	$(selInfoConsulta).addClass("spinner");
+	$(selInfoConsulta).show();
+
 	switch (selListaPor) {
 		case selVistaListarUsuarios:
 			promesaListar = UsuarioCtrl.ejecutarController(paramSolicitud, entidad)
 			.then((mt)=>{
 				let metadatos = UsuarioCtrl.getMetadatos();
 				metadatos = mt;
+
+				//spinner animacion hide
+				$(selInfoConsulta).removeClass("spinner");		
 
 				let data = metadatos.usuarios;
 				
@@ -211,12 +219,15 @@ function crearTabla(datos = [], selListaPor = "") {
 			.then((mt)=>{
 				let metadatos = ClienteCtrl.getMetadatos();
 				metadatos = mt;
+				
+				//spinner animacion hide
+				$(selInfoConsulta).removeClass("spinner");						
 
 				let data = metadatos.clientes;
 
 				if(data.length == 0){
 					$(selInfoConsulta).text(metadatos.msn);
-					infoColorClass(selInfoForm, false);
+					infoColorClass(selInfoConsulta, false);
 					return;
 				}
 				$(selInfoConsulta).text("");
@@ -230,12 +241,15 @@ function crearTabla(datos = [], selListaPor = "") {
 			.then((mt)=>{
 				let metadatos = ProveedorCtrl.getMetadatos();
 				metadatos = mt;
+				
+				//spinner animacion hide
+				$(selInfoConsulta).removeClass("spinner");						
 
 				let data = metadatos.proveedores;
 				
 				if(data.length == 0){
 					$(selInfoConsulta).text(metadatos.msn);
-					infoColorClass(selInfoForm, false);
+					infoColorClass(selInfoConsulta, false);
 					return;
 				}
 				$(selInfoConsulta).text("");
@@ -249,12 +263,15 @@ function crearTabla(datos = [], selListaPor = "") {
 			.then((mt)=>{
 				let metadatos = ProductoCtrl.getMetadatos();
 				metadatos = mt;
+				
+				//spinner animacion hide
+				$(selInfoConsulta).removeClass("spinner");						
 
 				let data = metadatos.productos;
 				
 				if(data.length == 0){
 					$(selInfoConsulta).text(metadatos.msn);
-					infoColorClass(selInfoForm, false);
+					infoColorClass(selInfoConsulta, false);
 					return;
 				}
 				$(selInfoConsulta).text("");
@@ -269,11 +286,14 @@ function crearTabla(datos = [], selListaPor = "") {
 				let metadatos = VentaCtrl.getMetadatos();
 				metadatos = mt;
 				
+				//spinner animacion hide
+				$(selInfoConsulta).removeClass("spinner");						
+				
 				let data = metadatos.ventas;
 				
 				if(data.length == 0){
 					$(selInfoConsulta).text(metadatos.msn);
-					infoColorClass(selInfoForm, false);
+					infoColorClass(selInfoConsulta, false);
 					return;
 				}
 				$(selInfoConsulta).text("");
@@ -289,9 +309,13 @@ function crearTabla(datos = [], selListaPor = "") {
 	promesaListar
 	.catch((eMt)=>{
 		let metadatos = undefined; //no se tipa por que es generico
-		metadatos = eMt;		
+		metadatos = eMt;	
+		
+		//spinner animacion hide
+		$(selInfoConsulta).removeClass("spinner");				
+			
 		$(selInfoConsulta).text(metadatos.msn);
-		infoColorClass(selInfoForm, false);
+		infoColorClass(selInfoConsulta, false);
 	});	
 
  }
