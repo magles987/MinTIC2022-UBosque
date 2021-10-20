@@ -55,7 +55,7 @@
 }
 
 #vistaReporte  .tScroll{
-    width: 100%;
+    width: 99%;
     max-height: 440px;
     overflow-y: auto;
     overflow-x: hidden; 
@@ -65,21 +65,31 @@
 	margin: auto;
 	width: 99%;
 		
-	border-color: rgba(128,128,255, 0.5);
+	border-color: rgba(200,200,200, 0.5);
     border-style: solid;
     border-width: 4px;
+	border-radius: 8px;
 	
     color: rgba(255, 255, 255, 0.8);     
 }
 
+#vistaReporte table tr:nth-child(even) {
+    background-color: rgb(32 32 32 / 0,2%); 
+}
+
+#vistaReporte table tr:nth-child(odd) {
+    background-color: rgba(130, 130, 130, 0.2);
+}
+
 #vistaReporte table thead tr th{
-	border: 1px solid rgba(170, 170, 170, 0.5);
 	text-align: center;
     font-size: 1.1em;
+    background-color: rgb(38 41 156 / 50%);
 }
 
 #vistaReporte table tbody tr td{
-	border: 1px solid rgba(170, 170, 170, 0.5);
 	text-align: left;
     font-size: 0.9em;
 }
+
+

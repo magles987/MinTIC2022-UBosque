@@ -58,6 +58,11 @@ function valNombre(val) {
 		return "No puede estar vacío";
 	}
 
+	const reNomStr = /^[a-zA-ZñÑ ]+$/
+	if (reNomStr.test(val) == false) {
+		return "Debe ser nombre valido";
+	}
+
 	return;
 }
 
