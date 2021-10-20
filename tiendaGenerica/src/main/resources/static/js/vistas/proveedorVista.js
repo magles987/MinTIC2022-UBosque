@@ -151,7 +151,7 @@ function setTagsError(errorModelo = ProveedorCtrl.getModelo()) {
 				//determinar si la consulta por nit es vacia
 				if (metadatos.proveedores.length == 0) {
 					metadatos.errorValidacion = ProveedorCtrl.getModelo()
-					metadatos.errorValidacion.nit = "no existe";
+					metadatos.errorValidacion.nit = "No existe";
 					limpiarCampos();
 					return Promise.reject(metadatos);
 				}

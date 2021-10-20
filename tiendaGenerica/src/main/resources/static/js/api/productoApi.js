@@ -44,11 +44,11 @@ export function getMetadatos() {
 function valCodigo(val) {
 
 	if (!val || val == "") {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	if (isNaN(parseInt(val)) || parseInt(val) <= 0) {
-		return "no es una codigo valido";
+		return "No es un código valido";
 	}
 	return;
 }
@@ -56,7 +56,7 @@ function valCodigo(val) {
 function valNombre(val) {
 
 	if (!val || val == "" || val == null) {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	return;
@@ -65,15 +65,15 @@ function valNombre(val) {
 function valPrecioCompra(val) {
 
 	if (!val || val == "" || val == null) {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	if (isNaN(parseFloat(val))) {
-		return "debe ser numerico";
+		return "Debe ser numérico";
 	}	
 
 	if (parseFloat(val) <= 0) {
-		return "debe ser mayor a 0";
+		return "Debe ser mayor a 0";
 	}	
 
 	return;
@@ -82,15 +82,15 @@ function valPrecioCompra(val) {
 function valIvacompra(val) {
 
 	if (!val || val == "" || val == null) {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	if (isNaN(parseFloat(val))) {
-		return "debe ser numerico";
+		return "Debe ser numérico";
 	}	
 
 	if (parseFloat(val) <= 0) {
-		return "debe ser mayor a 0";
+		return "Debe ser mayor a 0";
 	}	
 
 	return;
@@ -99,15 +99,15 @@ function valIvacompra(val) {
 function valPrecioVenta(val) {
 
 	if (!val || val == "" || val == null) {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	if (isNaN(parseFloat(val))) {
-		return "debe ser numerico";
+		return "Debe ser numérico";
 	}
 		
 	if (parseFloat(val) <= 0) {
-		return "debe ser mayor a 0";
+		return "Debe ser mayor a 0";
 	}	
 
 	return;
@@ -116,7 +116,7 @@ function valPrecioVenta(val) {
 function valProveedor(val = ProveedorCtrl.getModelo()) {
 	
 	if (!val || val == "" || val == null) {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	if (typeof val != "object"
@@ -124,7 +124,7 @@ function valProveedor(val = ProveedorCtrl.getModelo()) {
 		|| val.nit == null
 		|| isNaN(val.nit)
 	) {
-		return "no se indicó a que proveedor valido le pertenece";
+		return "No se indicó a que proveedor valido le pertenece";
 	}
 
 	return;
@@ -137,14 +137,14 @@ function valArchivo(archivo) {
 	if (!archivo 
 		|| archivo == null 
 		|| typeof archivo != "object" ) {
-		return "no hay un archivo a subir";
+		return "No hay un archivo a subir";
 	}
 
 	//verificar que tenga los atributos de name y size
 	if (!archivo.name || archivo.name == null
 		|| !archivo.size || archivo.size == null
 		) {
-		return "el archivo no se puede leer o esta dañado";
+		return "El archivo no se puede leer o está dañado";
 	}
 
 	const extVal = ".csv"; //extension valida de archivo permitido
@@ -157,15 +157,15 @@ function valArchivo(archivo) {
 	let tipoArchivo = archivo.type;
 
 	if (tamArchivo == 0) {
-		return "el archivo no puede estar vacio";
+		return "El archivo no puede estar vacío";
 	}
 
 	if (tamArchivo > tamMax) {
-		return `el archivo excede ${tamMax} de tamaño en Bytes`;
+		return `El archivo excede el tamaño de ${tamMax} Bytes`;
 	}
 
 	if (extVal != extArchivo || tipoVal != tipoArchivo) {
-		return `no es un archivo valido, debe ser de extension ${extVal} y de tipo ${tipoVal}`
+		return `Debe ser de extensión ${extVal} y de tipo ${tipoVal}`
 	}
 
 	return;
@@ -298,7 +298,7 @@ export function ejecutarController(paramSolicitud, entidad = getModelo()) {
 		//comprobar errorres de validacion
 		if (comprobarErrorModelo(errorModelo)) {
 			metadatos.errorValidacion = errorModelo;
-			metadatos.msn = "se detectaron errores";
+			metadatos.msn = "Se detectarón errores";
 			return Promise.reject(metadatos);
 		}else{
 			return Promise.resolve();

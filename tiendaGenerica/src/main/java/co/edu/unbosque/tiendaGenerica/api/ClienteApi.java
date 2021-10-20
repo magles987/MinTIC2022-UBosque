@@ -72,23 +72,23 @@ public class ClienteApi extends Api<Cliente, Long>{
 			
 			//validacion para creacion y actualizacion
 			if (entity.getCedula() == 0) {
-				valMap.put("cedula", "no tiene un valor valido");
+				valMap.put("cedula", "No tiene un valor valido");
 			}
 			
 			if (entity.getNombre().equals("") || entity.getNombre() == null) {
-				valMap.put("nombre", "no puede estar vacio");	
+				valMap.put("nombre", "No puede estar vacío");	
 			}
 			
 			if (entity.getEmail().equals("") || entity.getEmail() == null) {
-				valMap.put("email", "no puede estar vacio");	
+				valMap.put("email", "No puede estar vacío");	
 			}		
 			
 			if (entity.getDireccion().equals("") || entity.getDireccion() == null) {
-				valMap.put("direccion", "no puede estar vacio");	
+				valMap.put("direccion", "No puede estar vacío");	
 			}			
 
 			if (entity.getTelefono().equals("") || entity.getTelefono() == null) {
-				valMap.put("telefono", "no puede estar vacio");	
+				valMap.put("telefono", "No puede estar vacío");	
 			}			
 			
 			//validacion dedicada a Creacion			
@@ -99,7 +99,7 @@ public class ClienteApi extends Api<Cliente, Long>{
 				}				
 				
 				if (this.service.existePorEmail(entity.getEmail())) {
-					valMap.put("email", "ese email ya esta registrado");
+					valMap.put("email", "Ese email ya está registrado");
 				}			
 				
 				if(this.service.existePorTelefono(entity.getTelefono())) {
@@ -117,15 +117,15 @@ public class ClienteApi extends Api<Cliente, Long>{
 		} else if(etiModTipo.equals(this.etiEliminacion)) {
 			
 			if(this.service.existePorId(id) == false) {
-				valMap.put("cedula", "no existe");
+				valMap.put("cedula", "No existe");
 			}
 			
 			if (id <= 0) {
-				valMap.put("cedula", "no tiene un valor valido");
+				valMap.put("cedula", "No tiene un valor valido");
 			}	
 						
 		} else {
-			throw new Exception("no se especifico tipo de modificacion"); //no se sabe que modificacion hacer
+			throw new Exception("No se especificó tipo de modificación"); //no se sabe que modificacion hacer
 		}		
 
 		return valMap;		

@@ -150,7 +150,7 @@ function clickControllers(e) {
 					//determinar si la consulta por cedula es vacia
 					if (metadatos.clientes.length == 0) {
 						metadatos.errorValidacion = ClienteCtrl.getModelo()
-						metadatos.errorValidacion.cedula = "no existe";
+						metadatos.errorValidacion.cedula = "No existe";
 						limpiarCampos();
 						return Promise.reject(metadatos);
 					}

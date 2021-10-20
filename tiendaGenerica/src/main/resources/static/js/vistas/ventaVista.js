@@ -157,7 +157,7 @@ function ejecClienteController(paramSolicitud, elSeccVentaCliente) {
 			//determinar si la consulta por cedula es vacia
 			if (metadatos.clientes.length == 0) {
 				metadatos.errorValidacion = ClienteCtrl.getModelo()
-				metadatos.errorValidacion.cedula = "no existe";
+				metadatos.errorValidacion.cedula = "No existe";
 				return Promise.reject(metadatos);
 			}
 
@@ -204,7 +204,7 @@ function ejecProductoController(paramSolicitud, elSeccVentaProducto) {
 			//determinar si la consulta por codigo es vacia
 			if (metadatos.productos.length == 0) {
 				metadatos.errorValidacion = ProductoCtrl.getModelo()
-				metadatos.errorValidacion.codigo = "no existe";
+				metadatos.errorValidacion.codigo = "No existe";
 				return Promise.reject(metadatos);
 			}
 
@@ -340,6 +340,7 @@ function ejecProductoController(paramSolicitud, elSeccVentaProducto) {
 					 }
 				 }
 
+				//--porque h5---
 				 metadatos.msn = `<h5> ${metadatos.msn} <h5>`;
 				 $(selInfoForm).html(metadatos.msn);
 				 infoColorClass(selInfoForm, false);

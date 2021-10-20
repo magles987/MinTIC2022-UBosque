@@ -67,7 +67,7 @@ public class ProductoApi extends Api<Producto, Long>{
 		
 		if (file.isEmpty()) {
 			metadataResMap.put(this.nomErrorValidacion, "csv file");
-			metadataResMap.put(this.nomMsn, "el archivo esta vacio");
+			metadataResMap.put(this.nomMsn, "El archivo está vacío");
 			return new ResponseEntity<Map<String, Object>>(metadataResMap, HttpStatus.BAD_REQUEST);
 		}
 		
@@ -127,7 +127,7 @@ public class ProductoApi extends Api<Producto, Long>{
 			//determina si todos los producto no son validos
 			if(cantProds == valsMap.size()) {
 				metadataResMap.put(this.nomErrorValidacion, valsMap);
-				metadataResMap.put(this.nomMsn, "se encontraron errores de validacion en todos los productos del archivo o ya estan creados");
+				metadataResMap.put(this.nomMsn, "Error de validación (o los productos ya existen)");
 				return new ResponseEntity<Map<String, Object>>(metadataResMap, HttpStatus.BAD_REQUEST);					
 			}
 					
@@ -140,7 +140,7 @@ public class ProductoApi extends Api<Producto, Long>{
 			
 			this.service.crearMultiple(productos);
 			
-			metadataResMap.put(this.nomMsn, "la creacion de registros VALIDOS fue exitosa");
+			metadataResMap.put(this.nomMsn, "La creación de registros validos fue exitosa");
 			return new ResponseEntity<Map<String, Object>>(metadataResMap, HttpStatus.OK);		
 			
 		} catch (DataIntegrityViolationException e) {
@@ -169,23 +169,23 @@ public class ProductoApi extends Api<Producto, Long>{
 			) {
 			
 			if (entity.getCodigo() == 0) {
-				valMap.put("codigo", "no tiene un valor valido");
+				valMap.put("codigo", "No tiene un valor valido");
 			}
 			
 			if (entity.getIvacompra() <= 0) {
-				valMap.put("ivaCompra", "ser mayor a 0");	
+				valMap.put("ivaCompra", "Debe ser mayor a 0");	
 			}
 			
 			if (entity.getNombre().equals("") || entity.getNombre() == null) {
-				valMap.put("nombre", "ser mayor a 0");	
+				valMap.put("nombre", "Debe ser mayor a 0");	
 			}		
 			
 			if (entity.getPrecioVenta() <= 0) {
-				valMap.put("precioVenta", "ser mayor a 0");	
+				valMap.put("precioVenta", "Debe ser mayor a 0");	
 			}			
 
 			if (entity.getPrecioCompra() <= 0) {
-				valMap.put("valorTotal", "ser mayor a 0");	
+				valMap.put("valorTotal", "Debe ser mayor a 0");	
 			}			
 			
 			//validacion dedicada a Creacion			
@@ -205,11 +205,11 @@ public class ProductoApi extends Api<Producto, Long>{
 		} else if(etiModTipo.equals(this.etiEliminacion)) {
 			
 			if (this.service.existePorId(id) == false) {
-				valMap.put("codigo", "no existe");
+				valMap.put("codigo", "No existe");
 			}				
 			
 			if (id <= 0) {
-				valMap.put("codigo", "no tiene un valor valido");
+				valMap.put("codigo", "No tiene un valor valido");
 			}
 						
 		} else {

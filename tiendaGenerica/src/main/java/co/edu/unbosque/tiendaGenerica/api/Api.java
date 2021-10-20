@@ -68,9 +68,9 @@ public abstract class Api<TModel, Tid> {
 			//enviar mensaje de acuerdo a si se 
 			//encontro o no el id
 			if(entity != null) {
-				metadataResMap.put(this.nomMsn, "se encontro su identificador");
+				metadataResMap.put(this.nomMsn, "Se encontró su identificador");
 			}else {
-				metadataResMap.put(this.nomMsn, "no se encontro su identificador");
+				metadataResMap.put(this.nomMsn, "No se encontró su identificador");
 			}
 						
 		} catch (Exception e) {
@@ -171,7 +171,7 @@ public abstract class Api<TModel, Tid> {
 			Map<String, Object> valMap = this.getMapErroresValidacion(entity, id, etiModTipo);
 			if(valMap.size() > 0) {					
 				metadataResMap.put(this.nomErrorValidacion, valMap);
-				metadataResMap.put(this.nomMsn, "se encontraron errores de validacion");
+				metadataResMap.put(this.nomMsn, "Se encontraron errores de validación");
 				return new ResponseEntity<Map<String, Object>>(metadataResMap, HttpStatus.BAD_REQUEST);	
 			}			
 						
@@ -198,10 +198,10 @@ public abstract class Api<TModel, Tid> {
 				metadataResMap.put(this.nomModel_p, null);				
 
 			} else {
-				throw new Exception("no se especifico tipo de modificacion"); //no se sabe que modificacion hacer
+				throw new Exception("No se especificó tipo de modificación"); //no se sabe que modificacion hacer
 			}
 							
-			metadataResMap.put(this.nomMsn, "el " + this.nomModel_s + " tuvo " + etiModTipo + " exitosa");	
+			metadataResMap.put(this.nomMsn, "El " + this.nomModel_s + " tuvo " + etiModTipo + " exitosa.");	
 			return new ResponseEntity<Map<String, Object>>(metadataResMap, HttpStatus.OK); 			
 						
 		} catch (DataIntegrityViolationException e) {

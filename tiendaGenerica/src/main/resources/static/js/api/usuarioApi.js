@@ -42,12 +42,12 @@ export function getMetadatos() {
 function valCedula(val) {
 
 	if (!val || val == "") {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	const reNumStr = /^[0-9]+$/
 	if (reNumStr.test(val) == false) {
-		return "debe ser cédula valida";
+		return "Debe ser cédula valida";
 	}
 
 	return;
@@ -56,7 +56,7 @@ function valCedula(val) {
 function valNombre(val) {
 
 	if (!val || val == "" || val == null) {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	return;
@@ -65,12 +65,12 @@ function valNombre(val) {
 function valEmail(val) {
 
 	if (!val || val == "" || val == null) {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	const reEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 	if (reEmail.test(val) == false) {
-		return "no es un email valido";
+		return "No es un email valido";
 	}
 
 	return;
@@ -79,7 +79,7 @@ function valEmail(val) {
 function valUsuario(val) {
 
 	if (!val || val == "" || val == null) {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	return;
@@ -88,7 +88,7 @@ function valUsuario(val) {
 function valPassword(val) {
 	
 	if (!val || val == "" || val == null) {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	return;

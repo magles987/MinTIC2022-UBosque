@@ -67,25 +67,25 @@ public class VentaApi extends Api<Venta, Long>{
 //			}
 			
 			if (entity.getIvaVenta() <= 0) {
-				valMap.put("ivaVenta", "ser mayor a 0");	
+				valMap.put("ivaVenta", "Debe ser mayor a 0");	
 			}
 			
 			if (entity.getValorVenta() <= 0) {
-				valMap.put("valorVenta", "ser mayor a 0");	
+				valMap.put("valorVenta", "Debe ser mayor a 0");	
 			}		
 			
 			if (entity.getTotalVenta() <= 0) {
-				valMap.put("totalVenta", "ser mayor a 0");	
+				valMap.put("totalVenta", "Debe ser mayor a 0");	
 			}				
 			
 		} else if(etiModTipo.equals(this.etiEliminacion)) {
 			
 			if (this.service.existePorId(id) == false) {
-				valMap.put("codigo", "no existe");
+				valMap.put("codigo", "No existe");
 			}				
 			
 			if (id <= 0) {
-				valMap.put("codigo", "no tiene un valor valido");
+				valMap.put("codigo", "No tiene un valor valido");
 			}
 						
 		} else {

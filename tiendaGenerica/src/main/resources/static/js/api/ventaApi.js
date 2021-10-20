@@ -46,11 +46,11 @@ export function getMetadatos() {
 function valCodigo(val) {
 
 	if (!val || val == "") {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	if (isNaN(val) || val <= 0) {
-		return "no es una codigo valido";
+		return "No es una código valido";
 	}
 	return;
 }
@@ -58,11 +58,11 @@ function valCodigo(val) {
 function valIvaVenta(val) {
 
 	if (!val || val == "" || val == null) {
-		return "Iva Venta no puede estar vacio";
+		return "Iva Venta no puede estar vacío";
 	}
 
 	if (isNaN(val) || val <= 0) {
-		return "Iva Venta debe ser numerico";
+		return "Iva Venta debe ser numérico";
 	}
 
 	return;
@@ -71,11 +71,11 @@ function valIvaVenta(val) {
 function valTotalVenta(val) {
 
 	if (!val || val == "" || val == null) {
-		return "Total Venta no puede estar vacio";
+		return "Total Venta no puede estar vacío";
 	}
 
 	if (isNaN(val) || val <= 0) {
-		return "Total Venta debe ser numerico";
+		return "Total Venta debe ser numérico";
 	}
 
 	return;
@@ -84,11 +84,11 @@ function valTotalVenta(val) {
 function valValorVenta(val) {
 
 	if (!val || val == "" || val == null) {
-		return "Valor venta no debe estar vacio";
+		return "Valor venta no debe estar vacío";
 	}
 
 	if (isNaN(val) || val <= 0) {
-		return "Valor venta debe ser numerico";
+		return "Valor venta debe ser numérico";
 	}
 
 	return;
@@ -105,7 +105,7 @@ function valUsuario(val = UsuarioCtrl.getModelo()) {
 		|| isNaN(parseInt(val.cedula))
 		|| parseInt(val) <= 0
 	) {
-		return "no se indico una cedula valida del Usuario";
+		return "No se indicó una cédula valida del usuario";
 	}
 
 	return;
@@ -122,7 +122,7 @@ function valCliente(val = ClienteCtrl.getModelo()) {
 		|| isNaN(parseInt(val.cedula))
 		|| parseInt(val) <= 0
 	) {
-		return "no se indico una cedula valida del Cliente";
+		return "No se indicó una cédula valida del cliente";
 	}
 
 	return;
@@ -135,7 +135,7 @@ function valDetalleVenta(val = [DetalleVentaCtrl.getModelo()]) {
 		|| val == null
 		|| typeof val != "object"
 	) {
-		return "no se puede procesar el detalle de la venta";
+		return "No se puede procesar el detalle de la venta";
 	}
 
 	for (let i = 0; i < val.length; i++) {
@@ -143,13 +143,13 @@ function valDetalleVenta(val = [DetalleVentaCtrl.getModelo()]) {
 		if (!el.cantidadProducto
 			||el.cantidadProducto == null
 		) {
-			return "algunos productos sin cantidad";
+			return "Productos sin cantidad";
 		}
 	
 		if (isNaN(el.cantidadProducto)
 			||el.cantidadProducto <= 0
 		) {
-			return "algunos productos con cantidad NO valida (debe ser numero y mayor a 0)";
+			return "Productos con cantidad NO valida (debe ser número mayor a 0)";
 		}		
 		
 	}
@@ -311,7 +311,7 @@ export function ejecutarController(paramSolicitud, entidad = getModelo()) {
 		//comprobar errorres de validacion
 		if (comprobarErrorModelo(errorModelo)) {
 			metadatos.errorValidacion = errorModelo;
-			metadatos.msn = "se detectaron errores";
+			metadatos.msn = "Se detectaron errores";
 			return Promise.reject(metadatos);
 		}else{
 			return Promise.resolve();

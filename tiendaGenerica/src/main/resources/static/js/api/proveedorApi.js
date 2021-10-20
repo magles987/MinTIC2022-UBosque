@@ -41,12 +41,12 @@ export function getMetadatos() {
 function valNit(val) {
 
 	if (!val || val == "") {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	const reNumStr = /^[0-9]+$/
 	if (reNumStr.test(val) == false) {
-		return "no es un NIT valido";;
+		return "No es un NIT valido";;
 	}
 
 	return;
@@ -55,7 +55,7 @@ function valNit(val) {
 function valNombre(val) {
 
 	if (!val || val == "" || val == null) {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	return;
@@ -64,7 +64,7 @@ function valNombre(val) {
 function valCiudad(val) {
 
 	if (!val || val == "" || val == null) {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	return;
@@ -73,7 +73,7 @@ function valCiudad(val) {
 function valDireccion(val) {
 
 	if (!val || val == "" || val == null) {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	return;
@@ -82,12 +82,12 @@ function valDireccion(val) {
 function valTelefono(val) {
 
 	if (!val || val == "" || val == null) {
-		return "no puede estar vacio";
+		return "No puede estar vacío";
 	}
 
 	const reNumStr = /^[0-9]+$/
 	if (reNumStr.test(val) == false) {
-		return "debe ser número valido";
+		return "Debe ser número valido";
 	}
 
 	return;

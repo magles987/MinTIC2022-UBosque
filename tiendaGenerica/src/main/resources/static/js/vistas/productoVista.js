@@ -164,7 +164,7 @@ function setTagsError(errorModelo = ProductoCtrl.getModelo()) {
 					 //determinar si la consulta por codigo es vacia
 					 if (metadatos.productos.length == 0) {
 						 metadatos.errorValidacion = ProductoCtrl.getModelo()
-						 metadatos.errorValidacion.codigo = "no existe";
+						 metadatos.errorValidacion.codigo = "No existe";
 						 limpiarCampos();
 						 return Promise.reject(metadatos);
 					 }
